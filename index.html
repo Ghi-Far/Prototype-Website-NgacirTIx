@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NgacirTix – Tiket Transportasi Darat Terpercaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ngacir-blue': '#0A2540',
+            'ngacir-orange': '#FF6B00',
+            'ngacir-bg': '#F4F6F9',
+            'ngacir-light': '#E8F0FE',
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .hero-gradient { background: linear-gradient(135deg, #0A2540 0%, #1a3a5c 50%, #1e4976 100%); }
+    .promo-card-1 { background: linear-gradient(135deg, #FF6B00, #FF9A3C); }
+    .promo-card-2 { background: linear-gradient(135deg, #00B09B, #96C93D); }
+    .promo-card-3 { background: linear-gradient(135deg, #667EEA, #764BA2); }
+    .promo-card-4 { background: linear-gradient(135deg, #F093FB, #F5576C); }
+    .route-card-1 { background: linear-gradient(135deg, #0A2540 60%, #1e4976); }
+    .route-card-2 { background: linear-gradient(135deg, #1a1a2e 60%, #16213e); }
+    .route-card-3 { background: linear-gradient(135deg, #2d5016 60%, #3a7a1e); }
+    .route-card-4 { background: linear-gradient(135deg, #4a1942 60%, #7b2d6e); }
+    .route-card-5 { background: linear-gradient(135deg, #1a3a5c 60%, #0d2d4a); }
+    .route-card-6 { background: linear-gradient(135deg, #5c1a1a 60%, #8a2b2b); }
+    .tab-active { background-color: #FF6B00; color: white; }
+    .tab-inactive { background-color: transparent; color: #6b7280; }
+    .step-connector { width: 100%; height: 2px; background: linear-gradient(to right, #FF6B00, #FF9A3C); }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .float-anim { animation: float 3s ease-in-out infinite; }
+    .train-track { position: relative; overflow: hidden; }
+    .glass-card { backdrop-filter: blur(10px); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+  </style>
+</head>
+<body class="font-sans bg-ngacir-bg text-gray-800">
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-ngacir-blue shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight transition hover:opacity-90">
+        <span class="text-2xl">🚆</span>
+        <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        <a href="index.html" class="px-3 py-2 text-white hover:text-ngacir-orange transition text-sm font-medium">Beranda</a>
+        <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Kereta Api</a>
+        <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bus</a>
+        <a href="promo.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Promo</a>
+        <a href="help.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bantuan</a>
+      </nav>
+
+      <!-- Right Side -->
+      <div class="hidden lg:flex items-center gap-3">
+        <button class="flex items-center gap-1.5 text-gray-300 hover:text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 transition">
+          <span>🇮🇩</span><span>IDR</span>
+        </button>
+
+        <!-- Notifikasi -->
+        <a href="notifications.html" class="relative flex items-center gap-1 text-gray-300 hover:text-white text-sm transition px-2 py-1" title="Pusat Notifikasi">
+          <i class="fa-solid fa-bell text-base"></i>
+          <span class="w-4 h-4 bg-ngacir-orange text-white text-[9px] font-extrabold rounded-full flex items-center justify-center absolute -top-1 right-0">3</span>
+        </a>
+
+        <!-- Pesanan Saya -->
+        <a href="history.html" class="flex items-center gap-2 text-gray-200 hover:text-ngacir-orange text-sm font-medium px-3 py-2 rounded-xl hover:bg-white/5 transition">
+          <i class="fa-solid fa-receipt text-xs"></i><span>Pesanan Saya</span>
+        </a>
+
+        <!-- Profil & Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-2 pl-2 border-l border-white/15 cursor-pointer py-1">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-ngacir-orange to-amber-400 flex items-center justify-center text-white font-bold text-xs shadow-md">BP</div>
+            <div class="hidden xl:block text-left">
+              <p class="text-xs font-bold text-white group-hover:text-ngacir-orange transition">Budi Pratama</p>
+              <span class="text-[10px] text-gray-400 font-medium block">🥈 Member Silver</span>
+            </div>
+            <i class="fa-solid fa-chevron-down text-gray-400 text-[10px] ml-1"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="hidden group-hover:block absolute right-0 top-full pt-2 w-56 z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 text-gray-700 text-xs">
+              <div class="px-3 py-2 border-b border-gray-100 mb-1">
+                <p class="font-bold text-gray-900 text-sm">Budi Pratama</p>
+                <p class="text-gray-400 text-[11px]">budi.pratama@email.com</p>
+                <span class="inline-block mt-1 px-2 py-0.5 rounded-full bg-orange-100 text-ngacir-orange font-bold text-[10px]">🪙 240 NgacirPoints</span>
+              </div>
+              <a href="history.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                <i class="fa-solid fa-ticket text-gray-400"></i> Tiket &amp; Pesanan Saya
+              </a>
+              <a href="manage.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                <i class="fa-solid fa-arrow-rotate-left text-gray-400"></i> Reschedule &amp; Refund
+              </a>
+              <a href="notifications.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                <i class="fa-solid fa-bell text-gray-400"></i> Notifikasi Masuk
+              </a>
+              <a href="help.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                <i class="fa-regular fa-circle-question text-gray-400"></i> Bantuan &amp; FAQ
+              </a>
+              <div class="pt-1 mt-1 border-t border-gray-100">
+                <button type="button" onclick="logoutUser()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-50 text-red-600 font-bold transition text-left cursor-pointer">
+                  <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="lg:hidden text-white text-xl p-2" onclick="toggleMenu()">
+        <i class="fa fa-bars" id="hamburger-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-ngacir-blue border-t border-blue-800 px-4 pb-4">
+    <nav class="flex flex-col gap-1 mt-2">
+      <a href="index.html" class="py-2.5 text-white text-sm font-medium border-b border-blue-800">Beranda</a>
+      <a href="search.html" class="py-2.5 text-gray-300 text-sm border-b border-blue-800 hover:text-white">Kereta Api</a>
+      <a href="history.html" class="py-2.5 text-gray-300 text-sm border-b border-blue-800 hover:text-white">Pesanan Saya</a>
+      <a href="notifications.html" class="py-2.5 text-gray-300 text-sm border-b border-blue-800 hover:text-white flex items-center justify-between">
+        <span>Notifikasi</span>
+        <span class="w-5 h-5 bg-ngacir-orange text-white text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+      </a>
+      <a href="promo.html" class="py-2.5 text-gray-300 text-sm border-b border-blue-800 hover:text-white">Promo</a>
+      <a href="help.html" class="py-2.5 text-gray-300 text-sm hover:text-white">Bantuan</a>
+    </nav>
+    <div class="flex items-center justify-between mt-3 pt-3 border-t border-blue-800">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-ngacir-orange text-white flex items-center justify-center font-bold text-xs">BP</div>
+        <div>
+          <p class="text-white text-xs font-bold">Budi Pratama</p>
+          <span class="text-[10px] text-gray-400">🥈 Member Silver</span>
+        </div>
+      </div>
+      <button onclick="logoutUser()" class="text-xs text-red-400 hover:text-red-300 font-semibold">Keluar</button>
+    </div>
+  </div>
+</header>
+<!-- ===================== END HEADER ===================== -->
+
+<!-- ===================== HERO SECTION ===================== -->
+<section class="hero-gradient relative overflow-hidden pt-16 pb-48 min-h-[500px]">
+  <!-- Background decorations -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-10 right-10 w-72 h-72 rounded-full bg-white"></div>
+    <div class="absolute bottom-0 left-20 w-48 h-48 rounded-full bg-ngacir-orange"></div>
+  </div>
+
+  <!-- Train track decoration -->
+  <div class="absolute bottom-16 left-0 right-0 h-1 bg-white opacity-10"></div>
+  <div class="absolute bottom-12 left-0 right-0 flex gap-8 px-8 opacity-10">
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+    <div class="h-3 w-1 bg-white"></div><div class="h-3 w-1 bg-white"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center gap-8">
+      <!-- Text Content -->
+      <div class="flex-1 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-white text-sm mb-6 backdrop-blur-sm">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          Platform Tiket Terpercaya Indonesia
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
+          Jelajahi Indonesia<br/>
+          <span class="text-ngacir-orange">Lebih Mudah,</span><br/>
+          Lewat Jalur Darat
+        </h1>
+        <p class="text-gray-300 text-base sm:text-lg mb-8 max-w-xl">
+          Pesan tiket kereta, bus, dan travel dengan mudah, cepat, dan aman. Tersedia ribuan jadwal perjalanan setiap harinya.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+          <a href="#search-widget" class="inline-flex items-center gap-2 bg-ngacir-orange hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-xl transition shadow-lg">
+            <i class="fa fa-search"></i> Cari Tiket Sekarang
+          </a>
+          <a href="#promo" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3 rounded-xl transition backdrop-blur-sm border border-white/20">
+            <i class="fa fa-tag"></i> Lihat Promo
+          </a>
+        </div>
+      </div>
+
+      <!-- Train Illustration -->
+      <div class="flex-1 flex justify-center lg:justify-end float-anim">
+        <div class="relative">
+          <div class="text-[120px] sm:text-[160px] leading-none select-none filter drop-shadow-2xl">🚆</div>
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-32 h-4 bg-black/20 rounded-full blur-md"></div>
+          <!-- Speed lines -->
+          <div class="absolute top-1/2 -left-16 flex flex-col gap-2 opacity-50">
+            <div class="h-0.5 w-12 bg-ngacir-orange rounded"></div>
+            <div class="h-0.5 w-8 bg-white rounded ml-2"></div>
+            <div class="h-0.5 w-14 bg-ngacir-orange rounded"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 text-center">
+        <div class="text-2xl font-extrabold text-ngacir-orange">2.5 Juta+</div>
+        <div class="text-gray-300 text-sm mt-1">Penumpang Puas</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <div class="text-2xl font-extrabold text-ngacir-orange">500+</div>
+        <div class="text-gray-300 text-sm mt-1">Rute Tersedia</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <div class="text-2xl font-extrabold text-ngacir-orange">50+</div>
+        <div class="text-gray-300 text-sm mt-1">Mitra Armada</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 text-center">
+        <div class="text-2xl font-extrabold text-ngacir-orange">4.8/5</div>
+        <div class="text-gray-300 text-sm mt-1 flex items-center justify-center gap-1">
+          <i class="fa fa-star text-yellow-400 text-xs"></i> Rating Pengguna
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SEARCH WIDGET ===================== -->
+<section id="search-widget" class="relative z-20 -mt-16 px-4 sm:px-6 lg:px-8 mb-12">
+  <div class="max-w-5xl mx-auto">
+    <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 border border-gray-100">
+      <!-- Tabs -->
+      <div class="flex gap-2 mb-6 bg-gray-100 rounded-xl p-1">
+        <button onclick="switchTab('kereta')" id="tab-kereta" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-semibold text-sm transition-all tab-active">
+          🚆 <span>Kereta Api</span>
+        </button>
+        <button onclick="switchTab('bus')" id="tab-bus" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-semibold text-sm transition-all tab-inactive">
+          🚌 <span>Bus</span>
+        </button>
+        <button onclick="switchTab('travel')" id="tab-travel" class="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-semibold text-sm transition-all tab-inactive">
+          🚐 <span>Travel/Shuttle</span>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <div class="flex flex-col lg:flex-row gap-3 items-end">
+        <!-- From -->
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+            <i class="fa fa-map-marker-alt text-ngacir-orange mr-1"></i> Dari
+          </label>
+          <div class="relative">
+            <input id="input-from" type="text" placeholder="Jakarta (GMR)"
+              class="w-full border-2 border-gray-200 focus:border-ngacir-orange rounded-xl px-4 py-3 text-sm font-medium outline-none transition-colors"
+              value="Jakarta (GMR)" />
+          </div>
+        </div>
+
+        <!-- Swap Button -->
+        <div class="flex-shrink-0 flex items-end pb-1">
+          <button onclick="swapLocations()" class="w-10 h-10 flex items-center justify-center rounded-full bg-ngacir-orange text-white hover:bg-orange-600 transition shadow-md text-lg font-bold">
+            ⇄
+          </button>
+        </div>
+
+        <!-- To -->
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+            <i class="fa fa-map-marker text-red-500 mr-1"></i> Tujuan
+          </label>
+          <input id="input-to" type="text" placeholder="Yogyakarta (YK)"
+            class="w-full border-2 border-gray-200 focus:border-ngacir-orange rounded-xl px-4 py-3 text-sm font-medium outline-none transition-colors"
+            value="Yogyakarta (YK)" />
+        </div>
+
+        <!-- Date -->
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+            <i class="fa fa-calendar text-ngacir-orange mr-1"></i> Tanggal Perjalanan
+          </label>
+          <input id="input-date" type="date"
+            class="w-full border-2 border-gray-200 focus:border-ngacir-orange rounded-xl px-4 py-3 text-sm font-medium outline-none transition-colors" />
+        </div>
+
+        <!-- Passengers -->
+        <div class="flex-shrink-0">
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+            <i class="fa fa-users text-ngacir-orange mr-1"></i> Penumpang
+          </label>
+          <div class="flex items-center border-2 border-gray-200 rounded-xl overflow-hidden">
+            <button onclick="changePassengers(-1)" class="px-3 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold transition text-lg leading-none">−</button>
+            <span id="passenger-count" class="px-4 py-3 font-semibold text-sm min-w-12 text-center">1</span>
+            <button onclick="changePassengers(1)" class="px-3 py-3 bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold transition text-lg leading-none">+</button>
+          </div>
+        </div>
+
+        <!-- Search Button -->
+        <div class="flex-shrink-0 w-full lg:w-auto">
+          <button onclick="doSearch()" class="w-full lg:w-auto bg-ngacir-orange hover:bg-orange-600 text-white font-bold px-8 py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2 text-sm">
+            <i class="fa fa-search"></i> Cari Tiket
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Routes -->
+      <div class="mt-4 pt-4 border-t border-gray-100">
+        <p class="text-xs text-gray-400 mb-2 font-medium">Pencarian Populer:</p>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="quickRoute('Jakarta (GMR)','Yogyakarta (YK)')" class="px-3 py-1 bg-ngacir-light text-blue-700 rounded-full text-xs font-medium hover:bg-blue-100 transition">Jakarta → Yogyakarta</button>
+          <button onclick="quickRoute('Jakarta (GMR)','Surabaya (SBI)')" class="px-3 py-1 bg-ngacir-light text-blue-700 rounded-full text-xs font-medium hover:bg-blue-100 transition">Jakarta → Surabaya</button>
+          <button onclick="quickRoute('Bandung (BD)','Jakarta (GMR)')" class="px-3 py-1 bg-ngacir-light text-blue-700 rounded-full text-xs font-medium hover:bg-blue-100 transition">Bandung → Jakarta</button>
+          <button onclick="quickRoute('Surabaya (SBI)','Malang (ML)')" class="px-3 py-1 bg-ngacir-light text-blue-700 rounded-full text-xs font-medium hover:bg-blue-100 transition">Surabaya → Malang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROMO SPESIAL ===================== -->
+<section id="promo" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-ngacir-blue">Promo Spesial Ngacir Hemat 🎉</h2>
+        <p class="text-gray-500 mt-1 text-sm">Dapatkan penghematan terbaik untuk perjalanan Anda</p>
+      </div>
+      <a href="promo.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-50 hover:bg-orange-100 text-ngacir-orange font-bold text-xs transition border border-orange-200">
+        <span>Lihat Semua Promo (Katalog Lengkap)</span>
+        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <!-- Promo 1 -->
+      <div class="promo-card-1 rounded-2xl p-5 text-white relative overflow-hidden group hover:scale-105 transition-transform shadow-lg">
+        <div class="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">🔥 HOT DEAL</div>
+        <div class="text-3xl mb-2">🚆</div>
+        <h3 class="font-bold text-lg leading-tight mb-1">Diskon 30% Kereta Ekonomi</h3>
+        <p class="text-orange-100 text-xs mb-3">Berlaku s/d 31 Des 2025 • Semua rute</p>
+        <div class="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 mb-3">
+          <p class="text-xs text-orange-100">Kode Promo</p>
+          <p class="font-bold text-base tracking-widest">NGACIR30</p>
+        </div>
+        <button class="w-full bg-white text-orange-600 font-bold text-sm py-2 rounded-lg hover:bg-orange-50 transition">Pakai Promo</button>
+      </div>
+
+      <!-- Promo 2 -->
+      <div class="promo-card-2 rounded-2xl p-5 text-white relative overflow-hidden group hover:scale-105 transition-transform shadow-lg">
+        <div class="absolute top-3 right-3 bg-green-700 text-white text-xs font-bold px-2 py-0.5 rounded-full">💰 CASHBACK</div>
+        <div class="text-3xl mb-2">💚</div>
+        <h3 class="font-bold text-lg leading-tight mb-1">Cashback GoPay 20K</h3>
+        <p class="text-green-100 text-xs mb-3">Min. transaksi Rp150.000 • GoPay only</p>
+        <div class="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 mb-3">
+          <p class="text-xs text-green-100">Kode Promo</p>
+          <p class="font-bold text-base tracking-widest">GOPAY20K</p>
+        </div>
+        <button class="w-full bg-white text-green-600 font-bold text-sm py-2 rounded-lg hover:bg-green-50 transition">Pakai Promo</button>
+      </div>
+
+      <!-- Promo 3 -->
+      <div class="promo-card-3 rounded-2xl p-5 text-white relative overflow-hidden group hover:scale-105 transition-transform shadow-lg">
+        <div class="absolute top-3 right-3 bg-purple-700 text-white text-xs font-bold px-2 py-0.5 rounded-full">🎁 SPESIAL</div>
+        <div class="text-3xl mb-2">🚐</div>
+        <h3 class="font-bold text-lg leading-tight mb-1">Buy 2 Get 1 Free Travel</h3>
+        <p class="text-purple-100 text-xs mb-3">Rute Jabodetabek • Berlaku hari ini</p>
+        <div class="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 mb-3">
+          <p class="text-xs text-purple-100">Kode Promo</p>
+          <p class="font-bold text-base tracking-widest">TRAVEL2GET1</p>
+        </div>
+        <button class="w-full bg-white text-purple-600 font-bold text-sm py-2 rounded-lg hover:bg-purple-50 transition">Pakai Promo</button>
+      </div>
+
+      <!-- Promo 4 -->
+      <div class="promo-card-4 rounded-2xl p-5 text-white relative overflow-hidden group hover:scale-105 transition-transform shadow-lg">
+        <div class="absolute top-3 right-3 bg-pink-700 text-white text-xs font-bold px-2 py-0.5 rounded-full">⭐ EARLY BIRD</div>
+        <div class="text-3xl mb-2">🎄</div>
+        <h3 class="font-bold text-lg leading-tight mb-1">Early Bird Nataru 2025/2026</h3>
+        <p class="text-pink-100 text-xs mb-3">Hemat s/d Rp150.000 • Pesan sekarang!</p>
+        <div class="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 mb-3">
+          <p class="text-xs text-pink-100">Kode Promo</p>
+          <p class="font-bold text-base tracking-widest">NATARU25</p>
+        </div>
+        <button class="w-full bg-white text-pink-600 font-bold text-sm py-2 rounded-lg hover:bg-pink-50 transition">Pakai Promo</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RUTE POPULER ===================== -->
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-ngacir-bg">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-ngacir-blue">Rute Populer 🗺️</h2>
+      <p class="text-gray-500 mt-2">Destinasi favorit jutaan penumpang NgacirTix</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Route Card Template -->
+      <div class="route-card-1 rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:scale-105 transition-transform" onclick="quickRoute('Jakarta (GMR)','Yogyakarta (YK)')">
+        <div class="p-6 h-44 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-white/70 text-xs font-medium mb-1">🚆 Kereta Api</div>
+              <div class="text-white font-bold text-xl">Jakarta</div>
+              <div class="text-white/60 text-xs">Gambir / Pasar Senen</div>
+            </div>
+            <div class="text-white/40 text-3xl">→</div>
+            <div class="text-right">
+              <div class="text-white font-bold text-xl">Yogyakarta</div>
+              <div class="text-white/60 text-xs">Tugu / Lempuyangan</div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="text-white/60 text-xs">Mulai dari</div>
+              <div class="text-ngacir-orange font-extrabold text-lg">Rp289.000</div>
+            </div>
+            <button class="bg-ngacir-orange hover:bg-orange-600 text-white w-9 h-9 rounded-full flex items-center justify-center transition shadow-lg text-sm">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card-2 rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:scale-105 transition-transform" onclick="quickRoute('Jakarta (GMR)','Surabaya (SBI)')">
+        <div class="p-6 h-44 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-white/70 text-xs font-medium mb-1">🚆 Kereta Api</div>
+              <div class="text-white font-bold text-xl">Jakarta</div>
+              <div class="text-white/60 text-xs">Gambir / Pasar Senen</div>
+            </div>
+            <div class="text-white/40 text-3xl">→</div>
+            <div class="text-right">
+              <div class="text-white font-bold text-xl">Surabaya</div>
+              <div class="text-white/60 text-xs">Gubeng / Pasar Turi</div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="text-white/60 text-xs">Mulai dari</div>
+              <div class="text-ngacir-orange font-extrabold text-lg">Rp415.000</div>
+            </div>
+            <button class="bg-ngacir-orange hover:bg-orange-600 text-white w-9 h-9 rounded-full flex items-center justify-center transition shadow-lg text-sm">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card-3 rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:scale-105 transition-transform" onclick="quickRoute('Bandung (BD)','Surabaya (SBI)')">
+        <div class="p-6 h-44 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-white/70 text-xs font-medium mb-1">🚆 Kereta Api</div>
+              <div class="text-white font-bold text-xl">Bandung</div>
+              <div class="text-white/60 text-xs">Bandung / Kiaracondong</div>
+            </div>
+            <div class="text-white/40 text-3xl">→</div>
+            <div class="text-right">
+              <div class="text-white font-bold text-xl">Surabaya</div>
+              <div class="text-white/60 text-xs">Gubeng / Pasar Turi</div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="text-white/60 text-xs">Mulai dari</div>
+              <div class="text-ngacir-orange font-extrabold text-lg">Rp195.000</div>
+            </div>
+            <button class="bg-ngacir-orange hover:bg-orange-600 text-white w-9 h-9 rounded-full flex items-center justify-center transition shadow-lg text-sm">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card-4 rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:scale-105 transition-transform" onclick="quickRoute('Yogyakarta (YK)','Bali (DPS)')">
+        <div class="p-6 h-44 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-white/70 text-xs font-medium mb-1">🚐 Travel</div>
+              <div class="text-white font-bold text-xl">Yogyakarta</div>
+              <div class="text-white/60 text-xs">Tugu / Lempuyangan</div>
+            </div>
+            <div class="text-white/40 text-3xl">→</div>
+            <div class="text-right">
+              <div class="text-white font-bold text-xl">Bali</div>
+              <div class="text-white/60 text-xs">Via travel shuttle</div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="text-white/60 text-xs">Mulai dari</div>
+              <div class="text-ngacir-orange font-extrabold text-lg">Rp125.000</div>
+            </div>
+            <button class="bg-ngacir-orange hover:bg-orange-600 text-white w-9 h-9 rounded-full flex items-center justify-center transition shadow-lg text-sm">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card-5 rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:scale-105 transition-transform" onclick="quickRoute('Jakarta (GMR)','Semarang (SMT)')">
+        <div class="p-6 h-44 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-white/70 text-xs font-medium mb-1">🚆 Kereta Api</div>
+              <div class="text-white font-bold text-xl">Jakarta</div>
+              <div class="text-white/60 text-xs">Gambir / Pasar Senen</div>
+            </div>
+            <div class="text-white/40 text-3xl">→</div>
+            <div class="text-right">
+              <div class="text-white font-bold text-xl">Semarang</div>
+              <div class="text-white/60 text-xs">Tawang / Poncol</div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="text-white/60 text-xs">Mulai dari</div>
+              <div class="text-ngacir-orange font-extrabold text-lg">Rp210.000</div>
+            </div>
+            <button class="bg-ngacir-orange hover:bg-orange-600 text-white w-9 h-9 rounded-full flex items-center justify-center transition shadow-lg text-sm">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card-6 rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:scale-105 transition-transform" onclick="quickRoute('Surabaya (SBI)','Malang (ML)')">
+        <div class="p-6 h-44 flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-white/70 text-xs font-medium mb-1">🚆 Kereta Api</div>
+              <div class="text-white font-bold text-xl">Surabaya</div>
+              <div class="text-white/60 text-xs">Gubeng / Pasar Turi</div>
+            </div>
+            <div class="text-white/40 text-3xl">→</div>
+            <div class="text-right">
+              <div class="text-white font-bold text-xl">Malang</div>
+              <div class="text-white/60 text-xs">Malang / Kepanjen</div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <div class="text-white/60 text-xs">Mulai dari</div>
+              <div class="text-ngacir-orange font-extrabold text-lg">Rp85.000</div>
+            </div>
+            <button class="bg-ngacir-orange hover:bg-orange-600 text-white w-9 h-9 rounded-full flex items-center justify-center transition shadow-lg text-sm">
+              <i class="fa fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 4 LANGKAH ===================== -->
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-ngacir-light">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-ngacir-blue">4 Langkah Mudah Pesan Tiket</h2>
+      <p class="text-gray-500 mt-2">Proses pemesanan yang simpel dan cepat hanya dalam hitungan menit</p>
+    </div>
+    <div class="relative">
+      <!-- Connector line (desktop) -->
+      <div class="hidden lg:block absolute top-12 left-[calc(12.5%+1rem)] right-[calc(12.5%+1rem)] h-0.5 bg-gradient-to-r from-ngacir-orange via-orange-400 to-ngacir-orange"></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div class="flex flex-col items-center text-center relative">
+          <div class="w-24 h-24 rounded-full bg-ngacir-orange flex items-center justify-center text-4xl shadow-lg mb-4 relative z-10 ring-4 ring-white">
+            🔍
+          </div>
+          <div class="bg-ngacir-orange text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center -mt-3 mb-3 z-10 relative">1</div>
+          <h3 class="font-bold text-ngacir-blue text-lg">Cari Tiket</h3>
+          <p class="text-gray-500 text-sm mt-2">Masukkan rute & tanggal perjalanan sesuai kebutuhanmu</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center relative">
+          <div class="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center text-4xl shadow-lg mb-4 relative z-10 ring-4 ring-white">
+            🪑
+          </div>
+          <div class="bg-blue-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center -mt-3 mb-3 z-10 relative">2</div>
+          <h3 class="font-bold text-ngacir-blue text-lg">Pilih Kursi</h3>
+          <p class="text-gray-500 text-sm mt-2">Pilih kelas & nomor kursi favorit secara interaktif</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center relative">
+          <div class="w-24 h-24 rounded-full bg-green-500 flex items-center justify-center text-4xl shadow-lg mb-4 relative z-10 ring-4 ring-white">
+            💳
+          </div>
+          <div class="bg-green-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center -mt-3 mb-3 z-10 relative">3</div>
+          <h3 class="font-bold text-ngacir-blue text-lg">Bayar Mudah</h3>
+          <p class="text-gray-500 text-sm mt-2">Berbagai metode pembayaran tersedia & aman</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center relative">
+          <div class="w-24 h-24 rounded-full bg-purple-600 flex items-center justify-center text-4xl shadow-lg mb-4 relative z-10 ring-4 ring-white">
+            📱
+          </div>
+          <div class="bg-purple-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center -mt-3 mb-3 z-10 relative">4</div>
+          <h3 class="font-bold text-ngacir-blue text-lg">E-Tiket</h3>
+          <p class="text-gray-500 text-sm mt-2">Download & tunjukkan e-tiket di stasiun/terminal</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONI ===================== -->
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-ngacir-blue">Apa Kata Mereka 💬</h2>
+      <p class="text-gray-500 mt-2">Ribuan penumpang telah merasakan kemudahan NgacirTix</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="bg-ngacir-bg rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-pink-500 flex items-center justify-center text-white font-bold text-lg">RK</div>
+          <div>
+            <div class="font-semibold text-ngacir-blue">Rina Kusuma</div>
+            <div class="text-xs text-gray-400">Jakarta → Yogyakarta</div>
+          </div>
+        </div>
+        <div class="flex gap-0.5 mb-3">
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+        </div>
+        <p class="text-gray-600 text-sm italic leading-relaxed">"NgacirTix bikin perjalanan saya jauh lebih mudah! Prosesnya cepat, harga transparan, dan tiket langsung masuk ke email. Highly recommended!"</p>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <span class="text-xs text-gray-400">✅ Pembelian Terverifikasi</span>
+        </div>
+      </div>
+
+      <div class="bg-ngacir-bg rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-lg">DA</div>
+          <div>
+            <div class="font-semibold text-ngacir-blue">Dimas Arifin</div>
+            <div class="text-xs text-gray-400">Bandung → Surabaya</div>
+          </div>
+        </div>
+        <div class="flex gap-0.5 mb-3">
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+        </div>
+        <p class="text-gray-600 text-sm italic leading-relaxed">"Pilihan kursi interaktifnya keren banget, bisa pilih posisi favorit di gerbong! Antarmukanya modern dan gampang dipakai. Nggak pake ribet deh!"</p>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <span class="text-xs text-gray-400">✅ Pembelian Terverifikasi</span>
+        </div>
+      </div>
+
+      <div class="bg-ngacir-bg rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-lg">SW</div>
+          <div>
+            <div class="font-semibold text-ngacir-blue">Sari Wulandari</div>
+            <div class="text-xs text-gray-400">Jakarta → Semarang</div>
+          </div>
+        </div>
+        <div class="flex gap-0.5 mb-3">
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+          <i class="fa fa-star text-yellow-400 text-sm"></i>
+        </div>
+        <p class="text-gray-600 text-sm italic leading-relaxed">"Refund prosesnya cepat dan CS-nya ramah banget. Pernah ada kendala dan langsung diselesaikan dalam 1 jam. Luar biasa pelayanannya!"</p>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <span class="text-xs text-gray-400">✅ Pembelian Terverifikasi</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Rating Summary -->
+    <div class="mt-10 bg-ngacir-blue rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 text-white">
+      <div class="text-center sm:text-left">
+        <div class="text-5xl font-extrabold text-ngacir-orange">4.8</div>
+        <div class="flex gap-1 justify-center sm:justify-start mt-1">
+          <i class="fa fa-star text-yellow-400"></i><i class="fa fa-star text-yellow-400"></i>
+          <i class="fa fa-star text-yellow-400"></i><i class="fa fa-star text-yellow-400"></i>
+          <i class="fa fa-star-half-alt text-yellow-400"></i>
+        </div>
+        <div class="text-gray-400 text-sm mt-1">dari 5.0 (128.450 ulasan)</div>
+      </div>
+      <div class="flex-1 space-y-2 w-full max-w-xs sm:max-w-none">
+        <div class="flex items-center gap-2 text-sm"><span class="text-gray-300 w-4">5</span><i class="fa fa-star text-yellow-400 text-xs"></i><div class="flex-1 bg-white/10 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:78%"></div></div><span class="text-gray-400 text-xs">78%</span></div>
+        <div class="flex items-center gap-2 text-sm"><span class="text-gray-300 w-4">4</span><i class="fa fa-star text-yellow-400 text-xs"></i><div class="flex-1 bg-white/10 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:16%"></div></div><span class="text-gray-400 text-xs">16%</span></div>
+        <div class="flex items-center gap-2 text-sm"><span class="text-gray-300 w-4">3</span><i class="fa fa-star text-yellow-400 text-xs"></i><div class="flex-1 bg-white/10 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:4%"></div></div><span class="text-gray-400 text-xs">4%</span></div>
+        <div class="flex items-center gap-2 text-sm"><span class="text-gray-300 w-4">2</span><i class="fa fa-star text-yellow-400 text-xs"></i><div class="flex-1 bg-white/10 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:1%"></div></div><span class="text-gray-400 text-xs">1%</span></div>
+        <div class="flex items-center gap-2 text-sm"><span class="text-gray-300 w-4">1</span><i class="fa fa-star text-yellow-400 text-xs"></i><div class="flex-1 bg-white/10 rounded-full h-2"><div class="bg-yellow-400 h-2 rounded-full" style="width:1%"></div></div><span class="text-gray-400 text-xs">1%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-ngacir-blue text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Col 1: Brand -->
+      <div>
+        <a href="index.html" class="flex items-center gap-2 font-bold text-xl mb-3">
+          <span class="text-2xl">🚆</span>
+          <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+        </a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+          Platform tiket transportasi darat terpercaya Indonesia. Perjalanan nyaman dimulai dari sini.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: Produk -->
+      <div>
+        <h4 class="font-semibold text-white mb-4">Produk & Layanan</h4>
+        <ul class="space-y-2.5 text-sm text-gray-400">
+          <li><a href="search.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-train text-xs"></i> Tiket Kereta Api</a></li>
+          <li><a href="search.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-bus text-xs"></i> Tiket Bus AKAP</a></li>
+          <li><a href="search.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-shuttle-van text-xs"></i> Travel/Shuttle</a></li>
+          <li><a href="promo.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-tag text-xs"></i> Promo & Diskon</a></li>
+          <li><a href="history.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-receipt text-xs"></i> Pesanan Saya</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Bantuan -->
+      <div>
+        <h4 class="font-semibold text-white mb-4">Bantuan & Panduan</h4>
+        <ul class="space-y-2.5 text-sm text-gray-400">
+          <li><a href="help.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-book text-xs"></i> Cara Pesan Tiket</a></li>
+          <li><a href="manage.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-arrow-rotate-left text-xs"></i> Reschedule & Refund</a></li>
+          <li><a href="help.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-file-alt text-xs"></i> Syarat & Ketentuan</a></li>
+          <li><a href="help.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-shield-alt text-xs"></i> Kebijakan Privasi</a></li>
+          <li><a href="help.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-headset text-xs"></i> Pusat Bantuan 24/7</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Payment -->
+      <div>
+        <h4 class="font-semibold text-white mb-4">Metode Pembayaran</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">BCA</span>
+          <span class="bg-yellow-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Mandiri</span>
+          <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">BNI</span>
+          <span class="bg-blue-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">BRI</span>
+          <span class="bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">QRIS</span>
+          <span class="bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">GoPay</span>
+          <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">OVO</span>
+          <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">ShopeePay</span>
+        </div>
+        <p class="text-gray-500 text-xs mt-4">Semua transaksi dilindungi enkripsi SSL 256-bit</p>
+        <div class="flex items-center gap-2 mt-2">
+          <span class="bg-green-700 text-xs text-white px-2 py-0.5 rounded flex items-center gap-1"><i class="fa fa-lock text-xs"></i> SSL</span>
+          <span class="bg-blue-700 text-xs text-white px-2 py-0.5 rounded flex items-center gap-1"><i class="fa fa-certificate text-xs"></i> ISO 27001</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <div class="flex items-center gap-2 text-sm text-gray-400">
+        <i class="fa fa-phone-alt text-ngacir-orange"></i>
+        <span>CS 24/7: <a href="tel:1500999" class="text-white hover:text-ngacir-orange font-semibold transition">1500-999</a></span>
+      </div>
+      <div class="text-center text-sm text-gray-400">
+        &copy; 2025 <span class="text-white font-semibold">NgacirTix</span>. Seluruh hak dilindungi.
+      </div>
+      <div class="flex items-center gap-2 text-xs text-gray-500">
+        <i class="fa fa-lock text-green-400"></i> Transaksi Aman & Terpercaya
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+  // Set default date to today
+  document.addEventListener('DOMContentLoaded', () => {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('input-date').value = today;
+
+    // Load from localStorage if available
+    const saved = localStorage.getItem('ngacirtix_search');
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        if (data.from) document.getElementById('input-from').value = data.from;
+        if (data.to) document.getElementById('input-to').value = data.to;
+        if (data.date) document.getElementById('input-date').value = data.date;
+        if (data.passengers) document.getElementById('passenger-count').textContent = data.passengers;
+        if (data.mode) switchTab(data.mode);
+      } catch(e) {}
+    }
+  });
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('hamburger-icon');
+    menu.classList.toggle('hidden');
+    icon.className = menu.classList.contains('hidden') ? 'fa fa-bars' : 'fa fa-times';
+  }
+
+  // Logout User
+  function logoutUser() {
+    if (confirm('Apakah Anda yakin ingin keluar dari akun?')) {
+      const user = JSON.parse(localStorage.getItem('ngacirtix_user')) || {};
+      user.isLoggedIn = false;
+      localStorage.setItem('ngacirtix_user', JSON.stringify(user));
+      window.location.href = 'login.html';
+    }
+  }
+
+  // Tab switching
+  let currentTab = 'kereta';
+  function switchTab(tab) {
+    currentTab = tab;
+    ['kereta','bus','travel'].forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (el) {
+        el.className = t === tab
+          ? 'flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-semibold text-sm transition-all tab-active'
+          : 'flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg font-semibold text-sm transition-all tab-inactive';
+      }
+    });
+  }
+
+  // Passenger count
+  let passengerCount = 1;
+  function changePassengers(delta) {
+    passengerCount = Math.min(9, Math.max(1, passengerCount + delta));
+    document.getElementById('passenger-count').textContent = passengerCount;
+  }
+
+  // Swap locations
+  function swapLocations() {
+    const fromEl = document.getElementById('input-from');
+    const toEl = document.getElementById('input-to');
+    [fromEl.value, toEl.value] = [toEl.value, fromEl.value];
+    fromEl.style.transition = 'opacity 0.2s';
+    fromEl.style.opacity = '0.5';
+    toEl.style.opacity = '0.5';
+    setTimeout(() => { fromEl.style.opacity = '1'; toEl.style.opacity = '1'; }, 200);
+  }
+
+  // Quick route fill
+  function quickRoute(from, to) {
+    document.getElementById('input-from').value = from;
+    document.getElementById('input-to').value = to;
+    document.getElementById('search-widget').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Main search action
+  function doSearch() {
+    const from = document.getElementById('input-from').value.trim();
+    const to = document.getElementById('input-to').value.trim();
+    const date = document.getElementById('input-date').value;
+    const passengers = parseInt(document.getElementById('passenger-count').textContent);
+
+    if (!from || !to) {
+      alert('Mohon isi kota asal dan tujuan terlebih dahulu.');
+      return;
+    }
+    if (!date) {
+      alert('Mohon pilih tanggal perjalanan.');
+      return;
+    }
+
+    const searchData = { mode: currentTab, from, to, date, passengers };
+    localStorage.setItem('ngacirtix_search', JSON.stringify(searchData));
+    window.location.href = 'search.html';
+  }
+
+  // Promo copy buttons
+  document.querySelectorAll('button').forEach(btn => {
+    if (btn.textContent.trim() === 'Pakai Promo') {
+      btn.addEventListener('click', function() {
+        const code = this.closest('div').querySelector('.tracking-widest').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const orig = this.textContent;
+          this.textContent = '✓ Kode Disalin!';
+          setTimeout(() => { this.textContent = orig; }, 1500);
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>

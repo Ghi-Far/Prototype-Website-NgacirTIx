@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Status Pengembalian Dana (Refund Berhasil) - NgacirTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ngacir-blue': '#0A2540',
+            'ngacir-orange': '#FF6B00',
+            'ngacir-bg': '#F4F6F9',
+            'ngacir-light': '#E8F0FE',
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .stamp-badge {
+      transform: rotate(-10deg);
+      border: 3px double #16a34a;
+    }
+  </style>
+</head>
+<body class="font-sans bg-ngacir-bg text-gray-800 antialiased min-h-screen flex flex-col">
+
+<!-- ===================== HEADER STANDAR ===================== -->
+<header class="sticky top-0 z-50 bg-ngacir-blue shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 text-white font-bold text-xl">
+        <span class="text-2xl">🚆</span>
+        <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        <a href="index.html" class="px-3 py-2 text-white hover:text-ngacir-orange transition text-sm font-medium">Beranda</a>
+        <a href="#" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bus</a>
+        <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Kereta Api</a>
+        <a href="#" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Travel/Shuttle</a>
+        <a href="#" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Promo</a>
+        <a href="#" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bantuan</a>
+      </nav>
+
+      <!-- Right Side -->
+      <div class="hidden lg:flex items-center gap-3">
+        <button class="flex items-center gap-1 text-gray-300 hover:text-white text-sm transition">
+          <span>🇮🇩</span><span>IDR Rp</span><i class="fa fa-chevron-down text-xs ml-1"></i>
+        </button>
+        <a href="history.html" class="flex items-center gap-2 text-ngacir-orange font-semibold text-sm transition">
+          <i class="fa fa-bell"></i><span>Pesanan Saya</span>
+        </a>
+        <div class="flex items-center gap-2 cursor-pointer group">
+          <div class="w-9 h-9 rounded-full bg-ngacir-orange flex items-center justify-center text-white font-bold text-sm">BP</div>
+          <div class="hidden group-hover:block absolute top-16 right-4 bg-white rounded-xl shadow-xl p-4 min-w-48 text-gray-800">
+            <p class="font-semibold text-sm">Budi Pratama</p>
+            <span class="inline-flex items-center gap-1 text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full mt-1">
+              🥈 Member Silver
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="lg:hidden text-white text-xl p-2" onclick="toggleMenu()">
+        <i class="fa fa-bars" id="hamburger-icon"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-ngacir-blue border-t border-blue-800 px-4 pb-4">
+    <nav class="flex flex-col gap-1 mt-2">
+      <a href="index.html" class="py-2 text-white text-sm font-medium border-b border-blue-800">Beranda</a>
+      <a href="#" class="py-2 text-gray-300 text-sm border-b border-blue-800">Bus</a>
+      <a href="search.html" class="py-2 text-gray-300 text-sm border-b border-blue-800">Kereta Api</a>
+      <a href="#" class="py-2 text-gray-300 text-sm border-b border-blue-800">Travel/Shuttle</a>
+      <a href="#" class="py-2 text-gray-300 text-sm border-b border-blue-800">Promo</a>
+      <a href="#" class="py-2 text-gray-300 text-sm border-b border-blue-800">Bantuan</a>
+      <a href="history.html" class="py-2 text-ngacir-orange font-semibold text-sm">Pesanan Saya</a>
+    </nav>
+    <div class="flex items-center gap-3 mt-3 pt-3 border-t border-blue-800">
+      <div class="w-9 h-9 rounded-full bg-ngacir-orange flex items-center justify-center text-white font-bold text-sm">BP</div>
+      <div>
+        <p class="text-white text-sm font-semibold">Budi Pratama</p>
+        <span class="text-xs text-gray-400">🥈 Member Silver</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== 1. HERO HEADER HIJAU ===================== -->
+<section class="bg-gradient-to-r from-emerald-600 via-green-600 to-teal-700 text-white py-8 shadow-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      
+      <!-- Status Text -->
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-green-100 border border-white/20">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Pengembalian Dana Sukses</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight">
+          Pengembalian Dana Berhasil Ditransfer!
+        </h1>
+        <p class="text-xs sm:text-sm text-green-100 max-w-2xl leading-relaxed flex items-center flex-wrap gap-2">
+          <span>Dana sebesar <strong class="text-white font-black text-base">Rp412.500</strong> telah berhasil dikreditkan ke rekening Bank Central Asia (BCA) Anda.</span>
+          <span class="bg-white text-blue-800 text-[11px] font-black px-2 py-0.5 rounded flex items-center gap-1 shadow-2xs">
+            <i class="fa-solid fa-bolt text-yellow-500"></i> BI-FAST Instan
+          </span>
+        </p>
+      </div>
+
+      <!-- Tombol Kanan: Unduh Bukti Transfer (PDF) -->
+      <div class="shrink-0">
+        <button 
+          type="button" 
+          onclick="openModal()" 
+          class="px-5 py-3.5 bg-white text-green-800 hover:bg-green-50 font-extrabold text-xs sm:text-sm rounded-xl shadow-lg transition flex items-center gap-2 group">
+          <i class="fa-solid fa-file-pdf text-red-600 text-base group-hover:scale-110 transition-transform"></i>
+          <span>Unduh Bukti Transfer (PDF)</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2. PROGRESS TRACKER HORIZONTAL (SEMUA HIJAU/SELESAI) ===================== -->
+<section class="bg-white border-b border-gray-200 py-5 shadow-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      
+      <!-- 1. Pengajuan -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-gray-900 block">1. Pengajuan</span>
+          <span class="text-[11px] text-green-600 font-medium">15 Nov 2026, 10:20</span>
+        </div>
+      </div>
+
+      <!-- 2. Verifikasi KAI -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-gray-900 block">2. Verifikasi KAI</span>
+          <span class="text-[11px] text-green-600 font-medium">Disetujui 100%</span>
+        </div>
+      </div>
+
+      <!-- 3. Kliring Perbankan -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-gray-900 block">3. Kliring Perbankan</span>
+          <span class="text-[11px] text-green-600 font-medium">BI-FAST Sent</span>
+        </div>
+      </div>
+
+      <!-- 4. Dana Masuk Rekening -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-gray-900 block">4. Dana Masuk</span>
+          <span class="text-[11px] text-green-600 font-bold">Lunas Diterima</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAIN CONTENT WRAPPER ===================== -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+    <!-- ================= 3. KONTEN UTAMA KIRI (GRID VERTIKAL) (8 cols) ================= -->
+    <div class="lg:col-span-8 space-y-6">
+
+      <!-- CARD 1: BUKTI PENCAIRAN & DATA REKENING -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-receipt text-green-600 text-lg"></i>
+            <h2 class="font-bold text-gray-900 text-base">Bukti Pencairan &amp; Data Rekening</h2>
+          </div>
+          <span class="text-xs text-green-700 bg-green-50 px-2.5 py-1 rounded-full font-bold">
+            Status: Settlement Berhasil
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Data Rekening BCA -->
+          <div class="bg-slate-50 border border-gray-200 rounded-xl p-4 space-y-2">
+            <span class="text-[11px] text-gray-400 font-medium uppercase tracking-wider block">Rekening Tujuan</span>
+            <div class="flex items-center gap-2">
+              <span class="w-10 h-6 bg-blue-700 text-white rounded font-black text-[10px] flex items-center justify-center">BCA</span>
+              <span class="font-bold text-gray-900 text-sm">Bank Central Asia</span>
+            </div>
+            <div class="font-mono text-lg font-black text-gray-900 tracking-wider">
+              0885 9124 331
+            </div>
+            <div class="text-xs text-gray-600">
+              Atas Nama: <strong class="text-gray-900">Budi Pratama</strong>
+            </div>
+          </div>
+
+          <!-- Nominal & No Referensi -->
+          <div class="bg-slate-50 border border-gray-200 rounded-xl p-4 space-y-2">
+            <span class="text-[11px] text-gray-400 font-medium uppercase tracking-wider block">Total Dana Dikreditkan</span>
+            <div class="text-2xl sm:text-3xl font-black text-green-600">
+              Rp412.500
+            </div>
+            <div class="text-xs text-gray-500 pt-1 border-t border-gray-200">
+              No. Ref BI-FAST: <strong class="font-mono text-gray-800 text-[11px]">BIF20261115882910401</strong>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 2: RINCIAN PERHITUNGAN REFUND -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 space-y-4">
+        <div class="pb-3 border-b border-gray-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-calculator text-ngacir-orange text-lg"></i>
+            <h3 class="font-bold text-gray-900 text-base">Rincian Perhitungan Refund</h3>
+          </div>
+          <span class="text-xs text-gray-400">Aturan Resmi PT KAI 2026</span>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm">
+          <div class="flex justify-between text-gray-600">
+            <span>Harga Tiket Awal</span>
+            <span class="font-semibold text-gray-900">Rp550.000</span>
+          </div>
+
+          <div class="flex justify-between text-red-600">
+            <span class="flex items-center gap-1.5">
+              Potongan Pembatalan KAI 25%
+              <i class="fa-regular fa-circle-question text-gray-400 text-xs" title="Sesuai PM Kemenhub & Regulasi PT KAI"></i>
+            </span>
+            <span class="font-bold">-Rp137.500</span>
+          </div>
+
+          <div class="flex justify-between text-gray-600">
+            <span>Biaya Transfer &amp; Administrasi Bank (BI-FAST)</span>
+            <span class="font-bold text-green-600 uppercase">Gratis (Ditanggung NgacirTix)</span>
+          </div>
+
+          <!-- Divider -->
+          <div class="pt-3 border-t border-dashed border-gray-200"></div>
+
+          <!-- Total Rp412.500 -->
+          <div class="flex items-baseline justify-between pt-1">
+            <div>
+              <span class="text-xs font-bold text-gray-800 uppercase tracking-wider block">Total Dana Dikembalikan</span>
+              <span class="text-[11px] text-gray-400 font-normal">Sudah masuk saldo rekening</span>
+            </div>
+            <div class="text-right">
+              <span class="text-2xl sm:text-3xl font-black text-green-600">Rp412.500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: INFORMASI TIKET DIBATALKAN -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 space-y-4">
+        <div class="pb-3 border-b border-gray-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-ban text-red-500 text-base"></i>
+            <h3 class="font-bold text-gray-900 text-base">Informasi Tiket yang Dibatalkan</h3>
+          </div>
+          <span class="text-xs font-mono font-bold text-gray-400">PNR: 6X9Y4K</span>
+        </div>
+
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 text-xs sm:text-sm space-y-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <strong class="font-bold text-gray-900 text-base">KA Argo Dwipangga (10)</strong>
+              <span class="text-xs text-gray-500 block">Eksekutif (A) &bull; Gambir (GMR) ➔ Yogyakarta (YK)</span>
+            </div>
+            <span class="text-xs font-bold text-red-600 bg-red-100 px-2.5 py-1 rounded-md w-fit">
+              Dibatalkan &amp; Kursi Dirilis
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-gray-200/70 text-gray-600 text-xs">
+            <div>Jadwal: <strong>20 Nov 2026, 08:50 WIB</strong></div>
+            <div>Penumpang: <strong>Budi Pratama</strong></div>
+            <div>No. Pesanan: <strong class="font-mono">NGX-8829104</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4: DOKUMEN RESMI & BERKAS AUDIT -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 space-y-4">
+        <div class="pb-3 border-b border-gray-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-folder-open text-blue-600 text-lg"></i>
+            <h3 class="font-bold text-gray-900 text-base">Dokumen Resmi &amp; Berkas Audit</h3>
+          </div>
+          <span class="text-xs text-gray-400">Arsip Digital Terotentikasi</span>
+        </div>
+
+        <div class="space-y-3">
+          
+          <!-- File 1: Bukti Transfer Resmi Refund (trigger openModal()) -->
+          <div class="p-3.5 bg-slate-50 border border-gray-200 hover:border-gray-300 rounded-xl flex items-center justify-between gap-3 transition">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-bold text-gray-900">Bukti Transfer Resmi Refund (Settlement Slip)</h4>
+                <p class="text-[11px] text-gray-400">PDF &bull; 142 KB &bull; Dilengkapi Stempel Digital &amp; QR</p>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              onclick="openModal()" 
+              class="px-4 py-2 bg-ngacir-orange hover:bg-orange-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 shadow-xs">
+              <i class="fa-solid fa-eye text-xs"></i>
+              <span>Unduh / Pratinjau</span>
+            </button>
+          </div>
+
+          <!-- File 2: Surat Pembatalan Tiket KAI -->
+          <div class="p-3.5 bg-slate-50 border border-gray-200 hover:border-gray-300 rounded-xl flex items-center justify-between gap-3 transition">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-file-invoice"></i>
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-bold text-gray-900">Nota Pembatalan Resmi PT KAI</h4>
+                <p class="text-[11px] text-gray-400">PDF &bull; 98 KB &bull; Referensi KAI-REF-8829</p>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              onclick="alert('Nota Pembatalan KAI berhasil diunduh.')" 
+              class="px-4 py-2 bg-white border border-gray-300 hover:border-gray-400 text-gray-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0">
+              <i class="fa-solid fa-download text-xs"></i>
+              <span>Unduh</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= 4. SIDEBAR KANAN (4 cols) ================= -->
+    <div class="lg:col-span-4 space-y-6">
+
+      <!-- Rencana Perjalanan Berikutnya (Pesan Tiket Baru) -->
+      <div class="bg-gradient-to-br from-ngacir-blue to-blue-900 text-white rounded-2xl p-6 shadow-sm space-y-4">
+        <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-2xl text-ngacir-orange">
+          <i class="fa-solid fa-compass"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold">Rencana Perjalanan Berikutnya?</h3>
+          <p class="text-xs text-blue-200 mt-1 leading-relaxed">
+            Jadwal batal bukan berarti rencana berhenti. Cari rute kereta atau bus lain dengan promo diskon pengguna aktif.
+          </p>
+        </div>
+
+        <a 
+          href="search.html" 
+          class="w-full py-3.5 bg-ngacir-orange hover:bg-orange-600 text-white text-center font-extrabold text-xs sm:text-sm rounded-xl shadow-md transition flex items-center justify-center gap-2 block">
+          <span>Pesan Tiket Baru Sekarang</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- Jaminan Keamanan Mutasi -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-200 space-y-4">
+        <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+          <i class="fa-solid fa-shield-halved text-green-600 text-lg"></i>
+          <h4 class="font-bold text-gray-900 text-sm">Jaminan Keamanan Mutasi</h4>
+        </div>
+        <p class="text-xs text-gray-500 leading-relaxed">
+          Semua transaksi pencairan refund diawasi oleh <strong>Bank Indonesia</strong> melalui sistem jaringan <strong>BI-FAST</strong>. Mutasi rekening langsung tercatat real-time di m-BCA Anda.
+        </p>
+
+        <div class="bg-gray-50 rounded-xl p-3 text-xs text-gray-600 space-y-1.5 border border-gray-200">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-check text-green-600 text-xs"></i>
+            <span>Enkripsi ISO 27001 Keuangan</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-check text-green-600 text-xs"></i>
+            <span>Settlement Resmi PT Kereta Api</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- ===================== 5. MODAL POP-UP (ID: pdfModal, HIDDEN BY DEFAULT) ===================== -->
+<div id="pdfModal" class="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden my-8 animate-[scaleIn_0.2s_ease]">
+    
+    <!-- Modal Header -->
+    <div class="bg-gray-100 px-6 py-3.5 border-b border-gray-200 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-xs font-bold text-gray-700">
+        <i class="fa-solid fa-file-pdf text-red-600 text-base"></i>
+        <span>Pratinjau Dokumen: BUKTI_PENCAIRAN_REFUND_NGX8829104.pdf</span>
+      </div>
+      <button type="button" onclick="closeModal()" class="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-600 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+    </div>
+
+    <!-- PDF Sheet Preview -->
+    <div class="p-6 sm:p-8 space-y-6 bg-white text-gray-800 text-xs sm:text-sm">
+      
+      <!-- Kop Surat NgacirTix Finance -->
+      <div class="flex items-center justify-between pb-4 border-b-2 border-gray-800">
+        <div class="flex items-center gap-2.5">
+          <span class="text-3xl">🚆</span>
+          <div>
+            <div class="text-xl font-black tracking-tight text-ngacir-blue">
+              Ngacir<span class="text-ngacir-orange">Tix</span> <span class="text-xs font-semibold text-gray-500 uppercase tracking-widest block">Finance &amp; Settlement Division</span>
+            </div>
+            <p class="text-[10px] text-gray-400">PT Ngacir Solusi Indonesia &bull; Treasury Jakarta</p>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <span class="bg-green-100 text-green-800 font-black text-[10px] px-2.5 py-1 rounded uppercase tracking-wider block mb-1">
+            Settlement Berhasil
+          </span>
+          <span class="text-[10px] text-gray-400 font-mono">ID: NGT-FIN-2026-882</span>
+        </div>
+      </div>
+
+      <!-- Title Dokumen -->
+      <div class="text-center py-2">
+        <h2 class="text-base sm:text-lg font-black uppercase tracking-wider text-gray-900">
+          BUKTI PENCAIRAN DANA PENGEMBALIAN TIKET
+        </h2>
+        <p class="text-xs text-gray-500 font-mono">No. Dokumen: REF/KAI/2026/11/008829104</p>
+      </div>
+
+      <!-- Meta Grid: No Referensi BI-FAST, Pengirim, Penerima BCA Budi Pratama -->
+      <div class="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs">
+        <div>
+          <span class="text-gray-400 block text-[10px] uppercase font-bold">Pihak Pengirim</span>
+          <strong class="text-gray-900 block mt-0.5">PT Ngacir Solusi Indonesia (NgacirTix)</strong>
+          <span class="text-gray-500 text-[11px]">Bank: BCA Corporate Escrow (8801)</span>
+        </div>
+        <div>
+          <span class="text-gray-400 block text-[10px] uppercase font-bold">Pihak Penerima (Pemesan)</span>
+          <strong class="text-gray-900 block mt-0.5">Budi Pratama</strong>
+          <span class="text-gray-500 text-[11px]">BCA - 0885 9124 331</span>
+        </div>
+        <div>
+          <span class="text-gray-400 block text-[10px] uppercase font-bold">Metode Transaksi</span>
+          <strong class="text-gray-900 block mt-0.5">BI-FAST (Kliring Real-Time)</strong>
+        </div>
+        <div>
+          <span class="text-gray-400 block text-[10px] uppercase font-bold">No. Referensi Bank</span>
+          <strong class="font-mono text-gray-900 text-[11px] block mt-0.5">BIF20261115882910401</strong>
+        </div>
+      </div>
+
+      <!-- Rincian Rekonsiliasi -->
+      <div class="space-y-2">
+        <h4 class="font-bold text-gray-900 text-xs uppercase tracking-wider">Rincian Rekonsiliasi Tiket</h4>
+        <table class="w-full text-left text-xs border border-gray-200">
+          <thead class="bg-gray-100 text-gray-700">
+            <tr>
+              <th class="p-2 border border-gray-200">Deskripsi Item</th>
+              <th class="p-2 border border-gray-200 text-center">Ref/Kode</th>
+              <th class="p-2 border border-gray-200 text-right">Nominal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-2 border border-gray-200 font-medium">Tiket KA Argo Dwipangga (1 Penumpang)</td>
+              <td class="p-2 border border-gray-200 text-center font-mono">PNR: 6X9Y4K</td>
+              <td class="p-2 border border-gray-200 text-right">Rp550.000</td>
+            </tr>
+            <tr>
+              <td class="p-2 border border-gray-200 text-red-600 font-medium">Bea Administrasi Pembatalan KAI (25%)</td>
+              <td class="p-2 border border-gray-200 text-center text-red-600">Reg KAI</td>
+              <td class="p-2 border border-gray-200 text-right text-red-600">-Rp137.500</td>
+            </tr>
+            <tr class="bg-green-50/70 font-black text-gray-900">
+              <td colspan="2" class="p-2.5 border border-gray-200 text-right uppercase">Total Dana Diteruskan ke Rekening:</td>
+              <td class="p-2.5 border border-gray-200 text-right text-green-700 text-sm">Rp412.500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- QR Verifikasi dan Stempel Digital -->
+      <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+        
+        <!-- QR Verifikasi -->
+        <div class="flex items-center gap-3">
+          <div class="w-16 h-16 bg-white border-2 border-gray-800 p-1 rounded-lg flex items-center justify-center font-mono text-[9px] text-center font-bold">
+            [QR-CODE VERIFIED]
+          </div>
+          <div>
+            <span class="text-[10px] text-gray-400 block font-semibold uppercase">Autentikasi Digital</span>
+            <span class="text-[11px] font-bold text-gray-700">Terverifikasi Sistem Bank</span>
+            <span class="text-[10px] text-gray-400 block font-mono">SHA256: 8a9f...c201</span>
+          </div>
+        </div>
+
+        <!-- Stempel Digital -->
+        <div class="text-center">
+          <div class="stamp-badge px-3 py-1 rounded text-green-700 font-black text-xs uppercase tracking-widest bg-green-50 shadow-xs inline-block">
+            ✓ LUNAS DITRANSFER
+          </div>
+          <span class="text-[10px] text-gray-400 block mt-1">NgacirTix Auto-Disbursement</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-end gap-3">
+      <button 
+        type="button" 
+        onclick="closeModal()" 
+        class="px-4 py-2.5 rounded-xl border border-gray-300 hover:bg-gray-100 text-xs font-bold text-gray-700 transition">
+        Tutup Pratinjau
+      </button>
+      <button 
+        type="button" 
+        onclick="window.print()" 
+        class="px-5 py-2.5 rounded-xl bg-ngacir-orange hover:bg-orange-600 text-white text-xs font-extrabold shadow-md transition flex items-center gap-1.5">
+        <i class="fa-solid fa-print"></i>
+        <span>Cetak Dokumen</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== FOOTER STANDAR ===================== -->
+<footer class="bg-ngacir-blue text-white mt-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Col 1: Brand -->
+      <div>
+        <a href="index.html" class="flex items-center gap-2 font-bold text-xl mb-3">
+          <span class="text-2xl">🚆</span>
+          <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+        </a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-5">
+          Platform tiket transportasi darat terpercaya Indonesia. Perjalanan nyaman dimulai dari sini.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-ngacir-orange rounded-full flex items-center justify-center transition text-sm"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: Produk -->
+      <div>
+        <h4 class="font-semibold text-white mb-4">Produk & Layanan</h4>
+        <ul class="space-y-2.5 text-sm text-gray-400">
+          <li><a href="search.html" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-train text-xs"></i> Tiket Kereta Api</a></li>
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-bus text-xs"></i> Tiket Bus</a></li>
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-shuttle-van text-xs"></i> Travel/Shuttle</a></li>
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-tag text-xs"></i> Promo & Diskon</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Bantuan -->
+      <div>
+        <h4 class="font-semibold text-white mb-4">Bantuan & Panduan</h4>
+        <ul class="space-y-2.5 text-sm text-gray-400">
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-book text-xs"></i> Cara Pesan Tiket</a></li>
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-file-alt text-xs"></i> Syarat & Ketentuan</a></li>
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-shield-alt text-xs"></i> Kebijakan Privasi</a></li>
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-question-circle text-xs"></i> FAQ</a></li>
+          <li><a href="#" class="hover:text-ngacir-orange transition flex items-center gap-2"><i class="fa fa-headset text-xs"></i> Hubungi CS</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Payment -->
+      <div>
+        <h4 class="font-semibold text-white mb-4">Metode Pembayaran</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">BCA</span>
+          <span class="bg-yellow-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Mandiri</span>
+          <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">BNI</span>
+          <span class="bg-blue-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">BRI</span>
+          <span class="bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">QRIS</span>
+          <span class="bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">GoPay</span>
+          <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">OVO</span>
+          <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">ShopeePay</span>
+        </div>
+        <p class="text-gray-500 text-xs mt-4">Semua transaksi dilindungi enkripsi SSL 256-bit</p>
+        <div class="flex items-center gap-2 mt-2">
+          <span class="bg-green-700 text-xs text-white px-2 py-0.5 rounded flex items-center gap-1"><i class="fa fa-lock text-xs"></i> SSL</span>
+          <span class="bg-blue-700 text-xs text-white px-2 py-0.5 rounded flex items-center gap-1"><i class="fa fa-certificate text-xs"></i> ISO 27001</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <div class="flex items-center gap-2 text-sm text-gray-400">
+        <i class="fa fa-phone-alt text-ngacir-orange"></i>
+        <span>CS 24/7: <a href="tel:1500999" class="text-white hover:text-ngacir-orange font-semibold transition">1500-999</a></span>
+      </div>
+      <div class="text-center text-sm text-gray-400">
+        &copy; 2025 <span class="text-white font-semibold">NgacirTix</span>. Seluruh hak dilindungi.
+      </div>
+      <div class="flex items-center gap-2 text-xs text-gray-500">
+        <i class="fa fa-lock text-green-400"></i> Transaksi Aman & Terpercaya
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('hamburger-icon');
+    menu.classList.toggle('hidden');
+    icon.className = menu.classList.contains('hidden') ? 'fa fa-bars' : 'fa fa-times';
+  }
+
+  // Modal Pop-up Handlers
+  function openModal() {
+    document.getElementById('pdfModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('pdfModal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal when clicking outside of card
+  window.addEventListener('click', function(event) {
+    const modal = document.getElementById('pdfModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+</script>
+</body>
+</html>

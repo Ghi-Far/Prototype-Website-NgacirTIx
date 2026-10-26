@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalog Promo &amp; Kupon Diskon – NgacirTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ngacir-blue': '#0A2540',
+            'ngacir-orange': '#FF6B00',
+            'ngacir-bg': '#F4F6F9',
+            'ngacir-light': '#E8F0FE',
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-ngacir-bg text-gray-800 min-h-screen flex flex-col justify-between">
+
+  <!-- ===================== HEADER GLOBAL NGACIRTIX ===================== -->
+  <header class="sticky top-0 z-50 bg-ngacir-blue shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo NgacirTix -->
+        <a href="index.html" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight transition hover:opacity-90">
+          <span class="text-2xl">🚆</span>
+          <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Beranda</a>
+          <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Kereta Api</a>
+          <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bus</a>
+          <a href="promo.html" class="px-3 py-2 text-white hover:text-ngacir-orange transition text-sm font-medium bg-white/10 rounded-xl">Promo</a>
+          <a href="help.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bantuan</a>
+        </nav>
+
+        <!-- Right Side Actions -->
+        <div class="hidden lg:flex items-center gap-3">
+          <!-- Notifikasi -->
+          <a href="notifications.html" class="relative flex items-center gap-1 text-gray-300 hover:text-white text-sm transition px-2 py-1">
+            <i class="fa-solid fa-bell text-base"></i>
+            <span class="w-4 h-4 bg-ngacir-orange text-white text-[9px] font-extrabold rounded-full flex items-center justify-center absolute -top-1 right-0">3</span>
+          </a>
+
+          <!-- Pesanan Saya -->
+          <a href="history.html" class="flex items-center gap-2 text-gray-200 hover:text-ngacir-orange text-sm font-medium px-3 py-2 rounded-xl hover:bg-white/5 transition">
+            <i class="fa-solid fa-receipt text-xs"></i>
+            <span>Pesanan Saya</span>
+          </a>
+
+          <!-- Profil User & Dropdown -->
+          <div class="relative group">
+            <button class="flex items-center gap-2 pl-2 border-l border-white/15 cursor-pointer py-1">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-ngacir-orange to-amber-400 flex items-center justify-center text-white font-bold text-xs shadow-md">
+                BP
+              </div>
+              <div class="hidden xl:block text-left">
+                <p class="text-xs font-bold text-white group-hover:text-ngacir-orange transition">Budi Pratama</p>
+                <span class="text-[10px] text-gray-400 font-medium block">🥈 Member Silver</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-gray-400 text-[10px] ml-1"></i>
+            </button>
+
+            <!-- Menu Popup -->
+            <div class="hidden group-hover:block absolute right-0 top-full pt-2 w-56 z-50">
+              <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 text-gray-700 text-xs">
+                <div class="px-3 py-2 border-b border-gray-100 mb-1">
+                  <p class="font-bold text-gray-900 text-sm">Budi Pratama</p>
+                  <p class="text-gray-400 text-[11px]">budi.pratama@email.com</p>
+                </div>
+                <a href="history.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-ticket text-gray-400"></i> Tiket &amp; Pesanan Saya
+                </a>
+                <a href="manage.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-arrow-rotate-left text-gray-400"></i> Reschedule &amp; Refund
+                </a>
+                <a href="notifications.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-bell text-gray-400"></i> Notifikasi Masuk
+                </a>
+                <div class="pt-1 mt-1 border-t border-gray-100">
+                  <a href="login.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-50 text-red-600 font-bold transition">
+                    <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Hamburger Mobile -->
+        <button id="hamburger" type="button" class="lg:hidden text-white text-xl p-2 rounded-lg hover:bg-white/10 transition" onclick="toggleMenu()" aria-label="Menu">
+          <i class="fa fa-bars" id="hamburger-icon"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-ngacir-blue border-t border-white/10 px-4 pb-4">
+      <nav class="flex flex-col gap-1 mt-2">
+        <a href="index.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Beranda</a>
+        <a href="search.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Kereta Api</a>
+        <a href="history.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Pesanan Saya</a>
+        <a href="notifications.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Notifikasi</a>
+        <a href="promo.html" class="py-2.5 text-white font-bold text-sm">Promo</a>
+        <a href="help.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Bantuan</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO PROMO ===================== -->
+  <section class="bg-gradient-to-r from-ngacir-blue via-[#12365c] to-ngacir-orange text-white py-12 px-4 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-3 text-center md:text-left">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+          <i class="fa-solid fa-fire text-amber-300"></i> Promo Spesial Bulan Ini
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+          Ngacir Lebih Hemat, <br /><span class="text-amber-300">Diskon Hingga 50%!</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-200 max-w-lg">
+          Klaim kupon promo eksklusif untuk tiket Kereta Api Eksekutif, Bus AKAP, dan Shuttle travel antarkota.
+        </p>
+      </div>
+
+      <!-- Quick Banner Kupon Utama -->
+      <div class="bg-white/10 backdrop-blur-md p-5 rounded-3xl border border-white/20 text-white text-center sm:text-left max-w-sm w-full shadow-2xl">
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <span class="text-xs font-bold text-amber-300 uppercase">Kupon Unggulan KAI</span>
+          <span class="text-[10px] bg-red-500 text-white font-bold px-2 py-0.5 rounded-full">Terbatas</span>
+        </div>
+        <p class="text-xl font-black">Diskon Tiket Rp20.000</p>
+        <p class="text-[11px] text-gray-200 mb-3">Untuk semua kereta kelas Eksekutif &amp; Bisnis</p>
+        
+        <div class="flex items-center gap-2 bg-white/20 p-2 rounded-xl">
+          <span class="flex-1 font-mono font-black text-sm text-amber-200 tracking-widest text-center">NGACIRKAI</span>
+          <button type="button" onclick="copyCouponCode('NGACIRKAI')" class="px-3 py-1.5 rounded-lg bg-ngacir-orange hover:bg-orange-600 text-white font-bold text-xs shadow transition cursor-pointer">
+            Salin Kode
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MAIN CONTENT PROMO ===================== -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Filter Kategori Promo -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none mb-6">
+      <button onclick="filterPromoCategory('all')" id="tabPromoAll" class="promo-cat-btn px-4 py-2 rounded-xl text-xs font-bold bg-ngacir-orange text-white shadow-sm transition whitespace-nowrap">
+        Semua Promo
+      </button>
+      <button onclick="filterPromoCategory('kereta')" id="tabPromoKereta" class="promo-cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap">
+        🚆 Kereta Api KAI
+      </button>
+      <button onclick="filterPromoCategory('bus')" id="tabPromoBus" class="promo-cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap">
+        🚌 Bus &amp; Shuttle
+      </button>
+      <button onclick="filterPromoCategory('flash')" id="tabPromoFlash" class="promo-cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap">
+        ⚡ Flash Sale
+      </button>
+      <button onclick="filterPromoCategory('member')" id="tabPromoMember" class="promo-cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap">
+        🥈 Spesial Member Silver
+      </button>
+    </div>
+
+    <!-- Grid Kartu Promo -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- PROMO 1: NGACIRKAI -->
+      <div class="promo-item bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition" data-cat="kereta">
+        <div>
+          <div class="bg-gradient-to-r from-orange-500 to-amber-500 p-5 text-white relative">
+            <span class="absolute top-4 right-4 bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">KAI Eksekutif</span>
+            <p class="text-xs font-semibold uppercase tracking-wider text-orange-100">Diskon Langsung</p>
+            <h3 class="text-2xl font-black mt-1">Potongan Rp20.000</h3>
+            <p class="text-xs text-white/90 mt-1">Min. transaksi Rp300.000 rute Jawa</p>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-regular fa-clock text-ngacir-orange"></i>
+              <span>Berlaku s/d <strong>30 Nov 2026</strong></span>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Gunakan saat pembayaran tiket KA Argo Dwipangga, Taksaka, Argo Lawu, atau Fajar Utama.
+            </p>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <div class="flex items-center justify-between gap-3 p-2 bg-gray-50 rounded-2xl border border-dashed border-gray-300 mb-3">
+            <span class="font-mono font-bold text-sm text-gray-800 tracking-wider pl-2">NGACIRKAI</span>
+            <button type="button" onclick="copyCouponCode('NGACIRKAI')" class="px-3.5 py-1.5 rounded-xl bg-ngacir-orange hover:bg-orange-600 text-white font-bold text-xs transition cursor-pointer">
+              Salin Kode
+            </button>
+          </div>
+          <a href="search.html" class="w-full py-2.5 rounded-xl bg-ngacir-blue hover:bg-[#12365c] text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+            <span>Pakai Promo Cari Kereta</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROMO 2: FLASH SALE -->
+      <div class="promo-item bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition" data-cat="flash">
+        <div>
+          <div class="bg-gradient-to-r from-red-600 to-pink-600 p-5 text-white relative">
+            <span class="absolute top-4 right-4 bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">Flash 12.12</span>
+            <p class="text-xs font-semibold uppercase tracking-wider text-pink-100">Diskon Kilat</p>
+            <h3 class="text-2xl font-black mt-1">Diskon 30% Liburan</h3>
+            <p class="text-xs text-white/90 mt-1">Khusus keberangkatan hari Jumat &amp; Minggu</p>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-regular fa-clock text-red-500"></i>
+              <span>Berlaku s/d <strong>25 Nov 2026</strong></span>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Maksimal diskon hingga Rp75.000 untuk perjalanan Jakarta menuju Bandung &amp; Yogyakarta.
+            </p>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <div class="flex items-center justify-between gap-3 p-2 bg-gray-50 rounded-2xl border border-dashed border-gray-300 mb-3">
+            <span class="font-mono font-bold text-sm text-gray-800 tracking-wider pl-2">FLASHNGACIR</span>
+            <button type="button" onclick="copyCouponCode('FLASHNGACIR')" class="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition cursor-pointer">
+              Salin Kode
+            </button>
+          </div>
+          <a href="search.html" class="w-full py-2.5 rounded-xl bg-ngacir-blue hover:bg-[#12365c] text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+            <span>Pakai Promo Flash Sale</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROMO 3: PENGGUNA BARU -->
+      <div class="promo-item bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition" data-cat="member">
+        <div>
+          <div class="bg-gradient-to-r from-emerald-600 to-teal-600 p-5 text-white relative">
+            <span class="absolute top-4 right-4 bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">Pengguna Baru</span>
+            <p class="text-xs font-semibold uppercase tracking-wider text-teal-100">Welcome Voucher</p>
+            <h3 class="text-2xl font-black mt-1">Potongan Rp25.000</h3>
+            <p class="text-xs text-white/90 mt-1">Tanpa minimum transaksi pesanan pertama</p>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-regular fa-clock text-teal-600"></i>
+              <span>Berlaku s/d <strong>31 Des 2026</strong></span>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Kupon selamat datang untuk akun baru terverifikasi nomor handphone dan email aktif.
+            </p>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <div class="flex items-center justify-between gap-3 p-2 bg-gray-50 rounded-2xl border border-dashed border-gray-300 mb-3">
+            <span class="font-mono font-bold text-sm text-gray-800 tracking-wider pl-2">BARUNGACIR</span>
+            <button type="button" onclick="copyCouponCode('BARUNGACIR')" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition cursor-pointer">
+              Salin Kode
+            </button>
+          </div>
+          <a href="search.html" class="w-full py-2.5 rounded-xl bg-ngacir-blue hover:bg-[#12365c] text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+            <span>Mulai Pesan Sekarang</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROMO 4: BUS & TRAVEL -->
+      <div class="promo-item bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition" data-cat="bus">
+        <div>
+          <div class="bg-gradient-to-r from-blue-700 to-indigo-700 p-5 text-white relative">
+            <span class="absolute top-4 right-4 bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">Bus AKAP</span>
+            <p class="text-xs font-semibold uppercase tracking-wider text-blue-200">Diskon Antarkota</p>
+            <h3 class="text-2xl font-black mt-1">Cashback Rp15.000</h3>
+            <p class="text-xs text-white/90 mt-1">Untuk armada Sinar Jaya, Rosalia Indah &amp; Primajasa</p>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-regular fa-clock text-blue-600"></i>
+              <span>Berlaku s/d <strong>15 Des 2026</strong></span>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Nikmati perjalanan darat antar provinsi yang nyaman dengan cashback poin langsung.
+            </p>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <div class="flex items-center justify-between gap-3 p-2 bg-gray-50 rounded-2xl border border-dashed border-gray-300 mb-3">
+            <span class="font-mono font-bold text-sm text-gray-800 tracking-wider pl-2">NGACIRBUS</span>
+            <button type="button" onclick="copyCouponCode('NGACIRBUS')" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition cursor-pointer">
+              Salin Kode
+            </button>
+          </div>
+          <a href="search.html" class="w-full py-2.5 rounded-xl bg-ngacir-blue hover:bg-[#12365c] text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+            <span>Cari Jadwal Bus</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROMO 5: BCA VA PARTNER -->
+      <div class="promo-item bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition" data-cat="kereta">
+        <div>
+          <div class="bg-gradient-to-r from-blue-900 to-sky-700 p-5 text-white relative">
+            <span class="absolute top-4 right-4 bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">BCA Virtual Account</span>
+            <p class="text-xs font-semibold uppercase tracking-wider text-sky-200">Mitra Perbankan</p>
+            <h3 class="text-2xl font-black mt-1">Potongan Tambahan 5%</h3>
+            <p class="text-xs text-white/90 mt-1">Pembayaran otomatis dengan nomor VA 8271</p>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-regular fa-clock text-sky-600"></i>
+              <span>Berlaku s/d <strong>28 Feb 2027</strong></span>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Bisa digabung dengan promo KAI reguler tanpa biaya administrasi transfer antarbank.
+            </p>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <div class="flex items-center justify-between gap-3 p-2 bg-gray-50 rounded-2xl border border-dashed border-gray-300 mb-3">
+            <span class="font-mono font-bold text-sm text-gray-800 tracking-wider pl-2">BCANGACIR</span>
+            <button type="button" onclick="copyCouponCode('BCANGACIR')" class="px-3.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs transition cursor-pointer">
+              Salin Kode
+            </button>
+          </div>
+          <a href="payment.html" class="w-full py-2.5 rounded-xl bg-ngacir-blue hover:bg-[#12365c] text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+            <span>Ke Halaman Bayar</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROMO 6: TUKAR POINT -->
+      <div class="promo-item bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-lg transition" data-cat="member">
+        <div>
+          <div class="bg-gradient-to-r from-purple-800 to-violet-600 p-5 text-white relative">
+            <span class="absolute top-4 right-4 bg-white/20 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">NgacirPoints</span>
+            <p class="text-xs font-semibold uppercase tracking-wider text-purple-200">Loyalty Member</p>
+            <h3 class="text-2xl font-black mt-1">Tukar 200 Poin</h3>
+            <p class="text-xs text-white/90 mt-1">Dapatkan voucher perjalanan Rp30.000</p>
+          </div>
+          <div class="p-5 space-y-3">
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <i class="fa-solid fa-coins text-amber-500"></i>
+              <span>Saldo Anda: <strong>240 Poin</strong> (Cukup)</span>
+            </div>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Tukar poin yang Anda kumpulkan dari perjalanan KA Argo Dwipangga sebelumnya.
+            </p>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <div class="flex items-center justify-between gap-3 p-2 bg-gray-50 rounded-2xl border border-dashed border-gray-300 mb-3">
+            <span class="font-mono font-bold text-sm text-gray-800 tracking-wider pl-2">REWARDSILVER</span>
+            <button type="button" onclick="copyCouponCode('REWARDSILVER')" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs transition cursor-pointer">
+              Salin Kode
+            </button>
+          </div>
+          <a href="history.html" class="w-full py-2.5 rounded-xl bg-ngacir-blue hover:bg-[#12365c] text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+            <span>Cek Status Poin Member</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- TOAST SALIN KODE -->
+  <div id="promoToast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold pointer-events-none">
+    <i class="fa-solid fa-circle-check text-green-400 text-base"></i>
+    <span id="promoToastMsg">Kode promo berhasil disalin!</span>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-ngacir-blue text-white mt-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <p>&copy; 2026 NgacirTix. Platform Resmi Tiket Transportasi Darat.</p>
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="hover:text-white transition">Beranda</a>
+          <a href="search.html" class="hover:text-white transition">Cari Tiket</a>
+          <a href="help.html" class="hover:text-white transition">Bantuan</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('hamburger-icon');
+      if (menu && icon) {
+        menu.classList.toggle('hidden');
+        icon.className = menu.classList.contains('hidden') ? 'fa fa-bars' : 'fa fa-times';
+      }
+    }
+
+    // Salin Kode Kupon
+    function copyCouponCode(code) {
+      navigator.clipboard.writeText(code).then(() => {
+        showPromoToast('Kode voucher "' + code + '" berhasil disalin ke clipboard!');
+      }).catch(() => {
+        showPromoToast('Kode voucher: ' + code);
+      });
+    }
+
+    function showPromoToast(msg) {
+      const toast = document.getElementById('promoToast');
+      const text = document.getElementById('promoToastMsg');
+      text.textContent = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    // Filter Kategori
+    function filterPromoCategory(cat) {
+      document.querySelectorAll('.promo-cat-btn').forEach(btn => {
+        btn.className = 'promo-cat-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap';
+      });
+
+      const activeBtn = document.getElementById('tabPromo' + cat.charAt(0).toUpperCase() + cat.slice(1));
+      if (activeBtn) {
+        activeBtn.className = 'promo-cat-btn px-4 py-2 rounded-xl text-xs font-bold bg-ngacir-orange text-white shadow-sm transition whitespace-nowrap';
+      }
+
+      document.querySelectorAll('.promo-item').forEach(item => {
+        if (cat === 'all' || item.dataset.cat === cat) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

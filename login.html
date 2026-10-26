@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk &amp; Daftar Akun – NgacirTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ngacir-blue': '#0A2540',
+            'ngacir-orange': '#FF6B00',
+            'ngacir-bg': '#F4F6F9',
+            'ngacir-light': '#E8F0FE',
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .auth-bg {
+      background: radial-gradient(circle at 10% 20%, rgba(255, 107, 0, 0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(10, 37, 64, 0.08) 0%, transparent 40%),
+                  #F4F6F9;
+    }
+    .hero-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+  </style>
+</head>
+<body class="font-sans auth-bg text-gray-800 min-h-screen flex flex-col justify-between">
+
+  <!-- ===================== TOP SIMPLE NAVBAR ===================== -->
+  <header class="bg-ngacir-blue text-white py-4 px-4 sm:px-8 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight transition hover:opacity-90">
+        <span class="text-2xl">🚆</span>
+        <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+      </a>
+      <div class="flex items-center gap-4 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-300 hover:text-white transition flex items-center gap-1.5 font-medium">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+        </a>
+        <a href="help.html" class="hidden sm:flex text-gray-300 hover:text-white transition items-center gap-1.5 font-medium">
+          <i class="fa-regular fa-circle-question"></i> Butuh Bantuan?
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN AUTH CONTAINER ===================== -->
+  <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-10 my-4">
+    <div class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[620px]">
+      
+      <!-- SISI KIRI: BRANDING HERO BANNER (5 cols) -->
+      <div class="hidden lg:flex lg:col-span-5 bg-gradient-to-br from-ngacir-blue via-[#0d3155] to-[#164270] p-8 text-white flex-col justify-between relative overflow-hidden hero-pattern">
+        <!-- Floating bubbles -->
+        <div class="absolute -top-10 -right-10 w-44 h-44 rounded-full bg-ngacir-orange/20 blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-blue-400/20 blur-2xl pointer-events-none"></div>
+
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-orange-300 mb-6">
+            <span class="w-2 h-2 rounded-full bg-ngacir-orange animate-pulse"></span>
+            Akun Resmi Penumpang OTA
+          </div>
+          <h2 class="text-2xl font-black leading-tight tracking-tight">
+            Perjalanan Tanpa Batas Bersama <span class="text-ngacir-orange">NgacirTix</span>
+          </h2>
+          <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+            Nikmati kemudahan pesan tiket kereta api &amp; bus, jaminan refund kilat, dan kumpulkan poin reward di setiap perjalanan Anda.
+          </p>
+        </div>
+
+        <!-- Keunggulan List -->
+        <div class="space-y-3.5 my-6">
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-8 h-8 rounded-xl bg-ngacir-orange/20 text-ngacir-orange flex items-center justify-center shrink-0 text-sm">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-white">Boarding Pass Otomatis</p>
+              <p class="text-[11px] text-gray-300">E-Tiket langsung terbit tanpa antre cetak stasiun</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-8 h-8 rounded-xl bg-blue-400/20 text-blue-300 flex items-center justify-center shrink-0 text-sm">
+              <i class="fa-solid fa-arrow-rotate-left"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-white">Pusat Refund &amp; Reschedule</p>
+              <p class="text-[11px] text-gray-300">Ubah jadwal &amp; klaim dana cair via BI-FAST</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0 text-sm">
+              <i class="fa-solid fa-medal"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-white">Reward NgacirPoints</p>
+              <p class="text-[11px] text-gray-300">Tukar poin dengan diskon promo hingga 50%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-gray-400">
+          <span>&copy; 2026 NgacirTix Indonesia</span>
+          <span class="flex items-center gap-1 text-green-400"><i class="fa-solid fa-shield-halved"></i> Aman 256-Bit</span>
+        </div>
+      </div>
+
+      <!-- SISI KANAN: FORM TABS (MASUK & DAFTAR) (7 cols) -->
+      <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center">
+        
+        <!-- Tab Selector: Masuk / Daftar -->
+        <div class="flex p-1 bg-gray-100 rounded-2xl mb-8 max-w-sm mx-auto w-full">
+          <button id="tabBtnLogin" onclick="switchAuthTab('login')" class="flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-ngacir-blue shadow-sm transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-right-to-bracket text-ngacir-orange"></i> Masuk
+          </button>
+          <button id="tabBtnRegister" onclick="switchAuthTab('register')" class="flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-gray-500 hover:text-ngacir-blue transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-user-plus"></i> Daftar Akun
+          </button>
+        </div>
+
+        <!-- ================= FORM 1: MASUK (LOGIN) ================= -->
+        <div id="loginFormContainer" class="space-y-5">
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl sm:text-2xl font-black text-gray-900">Selamat Datang Kembali! 👋</h3>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1">Masuk dengan akun terdaftar untuk melanjutkan pesanan Anda.</p>
+          </div>
+
+          <!-- Alert Mock Akun -->
+          <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-xs text-blue-900">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-circle-info text-blue-600"></i>
+              <span>Gunakan akun demo: <strong>budi.pratama@email.com</strong></span>
+            </div>
+            <button type="button" onclick="fillDemoAccount()" class="text-xs text-ngacir-orange font-bold hover:underline cursor-pointer">Isi Otomatis</button>
+          </div>
+
+          <form id="formLogin" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Email atau Nomor Handphone</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                  <i class="fa-solid fa-envelope"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="loginIdentifier" 
+                  required 
+                  placeholder="nama@email.com atau 08123456789" 
+                  value="budi.pratama@email.com"
+                  class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:border-ngacir-orange focus:ring-2 focus:ring-orange-100 text-xs sm:text-sm font-medium outline-none transition" />
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Kata Sandi</label>
+                <button type="button" onclick="openForgotPasswordModal()" class="text-xs font-bold text-ngacir-orange hover:underline">Lupa Sandi?</button>
+              </div>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+                <input 
+                  type="password" 
+                  id="loginPassword" 
+                  required 
+                  placeholder="••••••••" 
+                  value="12345678"
+                  class="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-300 focus:border-ngacir-orange focus:ring-2 focus:ring-orange-100 text-xs sm:text-sm font-medium outline-none transition" />
+                <button type="button" onclick="togglePasswordVisibility('loginPassword', 'eyeLoginIcon')" class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-gray-400 hover:text-gray-600">
+                  <i class="fa-solid fa-eye" id="eyeLoginIcon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-gray-600">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="rememberMe" checked class="w-4 h-4 text-ngacir-orange rounded border-gray-300 focus:ring-ngacir-orange" />
+                <span>Ingat saya di perangkat ini</span>
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-ngacir-orange hover:bg-orange-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-orange-500/25 transition flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              <span>Masuk Sekarang</span>
+            </button>
+          </form>
+
+          <!-- Divider -->
+          <div class="relative flex items-center justify-center my-4">
+            <div class="border-t border-gray-200 w-full"></div>
+            <span class="bg-white px-3 text-xs text-gray-400 font-semibold uppercase">atau masuk dengan</span>
+          </div>
+
+          <!-- Social Login Buttons -->
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" onclick="socialLogin('Google')" class="py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 text-xs font-bold text-gray-700 flex items-center justify-center gap-2 transition cursor-pointer">
+              <i class="fa-brands fa-google text-red-500 text-base"></i> Google
+            </button>
+            <button type="button" onclick="socialLogin('Apple')" class="py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 text-xs font-bold text-gray-700 flex items-center justify-center gap-2 transition cursor-pointer">
+              <i class="fa-brands fa-apple text-gray-900 text-base"></i> Apple ID
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= FORM 2: DAFTAR AKUN BARU ================= -->
+        <div id="registerFormContainer" class="space-y-5 hidden">
+          <div class="text-center sm:text-left">
+            <h3 class="text-xl sm:text-2xl font-black text-gray-900">Buat Akun NgacirTix 🚀</h3>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1">Daftar sekarang &amp; dapatkan voucher diskon Rp20.000 untuk pengguna baru!</p>
+          </div>
+
+          <form id="formRegister" onsubmit="handleRegisterSubmit(event)" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Nama Lengkap (Sesuai KTP)</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                  <i class="fa-solid fa-user"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="regFullName" 
+                  required 
+                  placeholder="Contoh: Budi Pratama" 
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:border-ngacir-orange focus:ring-2 focus:ring-orange-100 text-xs sm:text-sm font-medium outline-none transition" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Email</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                    <i class="fa-solid fa-envelope"></i>
+                  </span>
+                  <input 
+                    type="email" 
+                    id="regEmail" 
+                    required 
+                    placeholder="nama@email.com" 
+                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:border-ngacir-orange focus:ring-2 focus:ring-orange-100 text-xs sm:text-sm font-medium outline-none transition" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">No. Handphone (WhatsApp)</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                    <i class="fa-brands fa-whatsapp text-green-600"></i>
+                  </span>
+                  <input 
+                    type="tel" 
+                    id="regPhone" 
+                    required 
+                    placeholder="081234567890" 
+                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:border-ngacir-orange focus:ring-2 focus:ring-orange-100 text-xs sm:text-sm font-medium outline-none transition" />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Kata Sandi</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input 
+                    type="password" 
+                    id="regPassword" 
+                    required 
+                    placeholder="Min. 8 karakter" 
+                    class="w-full pl-10 pr-9 py-2.5 rounded-xl border border-gray-300 focus:border-ngacir-orange focus:ring-2 focus:ring-orange-100 text-xs sm:text-sm font-medium outline-none transition" />
+                  <button type="button" onclick="togglePasswordVisibility('regPassword', 'eyeRegIcon')" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+                    <i class="fa-solid fa-eye text-xs" id="eyeRegIcon"></i>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Konfirmasi Sandi</label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
+                    <i class="fa-solid fa-shield-check"></i>
+                  </span>
+                  <input 
+                    type="password" 
+                    id="regConfirmPassword" 
+                    required 
+                    placeholder="Ulangi sandi" 
+                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:border-ngacir-orange focus:ring-2 focus:ring-orange-100 text-xs sm:text-sm font-medium outline-none transition" />
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <label class="flex items-start gap-2 cursor-pointer text-xs text-gray-600">
+                <input type="checkbox" id="regTerms" required class="w-4 h-4 text-ngacir-orange rounded border-gray-300 focus:ring-ngacir-orange mt-0.5" />
+                <span>Saya menyetujui <a href="help.html" class="text-ngacir-orange font-bold hover:underline">Syarat &amp; Ketentuan</a> serta <a href="help.html" class="text-ngacir-orange font-bold hover:underline">Kebijakan Privasi</a> NgacirTix.</span>
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-ngacir-blue hover:bg-[#12365c] text-white rounded-xl font-bold text-sm shadow-lg transition flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-user-check"></i>
+              <span>Daftar Akun Baru</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== MODAL LUPA KATA SANDI ===================== -->
+  <div id="forgotModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center px-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-key text-ngacir-orange text-lg"></i>
+          <h4 class="font-bold text-gray-900 text-base">Reset Kata Sandi</h4>
+        </div>
+        <button type="button" onclick="closeForgotPasswordModal()" class="text-gray-400 hover:text-gray-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <p class="text-xs text-gray-600 leading-relaxed">
+        Masukkan alamat email atau nomor handphone akun Anda. Kami akan mengirimkan tautan / kode OTP pemulihan kata sandi.
+      </p>
+      <div>
+        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email / No. HP</label>
+        <input type="text" id="forgotInput" placeholder="budi.pratama@email.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs sm:text-sm font-medium" />
+      </div>
+      <div class="flex items-center gap-3 pt-2">
+        <button type="button" onclick="closeForgotPasswordModal()" class="flex-1 py-2.5 rounded-xl border border-gray-300 text-xs font-bold text-gray-700 hover:bg-gray-100 transition">
+          Batal
+        </button>
+        <button type="button" onclick="submitForgotPassword()" class="flex-1 py-2.5 rounded-xl bg-ngacir-orange hover:bg-orange-600 text-white text-xs font-bold shadow transition">
+          Kirim Link Reset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFIKASI -->
+  <div id="authToast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-semibold pointer-events-none">
+    <i id="toastIcon" class="fa-solid fa-circle-check text-green-400 text-base"></i>
+    <span id="toastMsg">Berhasil masuk!</span>
+  </div>
+
+  <!-- FOOTER SIMPLE -->
+  <footer class="bg-gray-900 text-gray-400 text-xs py-4 text-center">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>&copy; 2026 NgacirTix. Platform Resmi Pemesanan Tiket Transportasi Darat.</p>
+      <div class="flex items-center gap-4">
+        <a href="help.html" class="hover:text-white transition">Pusat Bantuan</a>
+        <a href="index.html" class="hover:text-white transition">Beranda</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== SCRIPT LOGIC ===================== -->
+  <script>
+    // Tab switching
+    function switchAuthTab(tab) {
+      const btnLogin = document.getElementById('tabBtnLogin');
+      const btnReg = document.getElementById('tabBtnRegister');
+      const loginContainer = document.getElementById('loginFormContainer');
+      const regContainer = document.getElementById('registerFormContainer');
+
+      if (tab === 'login') {
+        btnLogin.className = 'flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-ngacir-blue shadow-sm transition flex items-center justify-center gap-2';
+        btnReg.className = 'flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-gray-500 hover:text-ngacir-blue transition flex items-center justify-center gap-2';
+        loginContainer.classList.remove('hidden');
+        regContainer.classList.add('hidden');
+      } else {
+        btnReg.className = 'flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-ngacir-blue shadow-sm transition flex items-center justify-center gap-2';
+        btnLogin.className = 'flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-gray-500 hover:text-ngacir-blue transition flex items-center justify-center gap-2';
+        regContainer.classList.remove('hidden');
+        loginContainer.classList.add('hidden');
+      }
+    }
+
+    // Toggle Password Visibility
+    function togglePasswordVisibility(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa-solid fa-eye-slash text-ngacir-orange';
+      } else {
+        input.type = 'password';
+        icon.className = 'fa-solid fa-eye';
+      }
+    }
+
+    // Auto-fill demo account
+    function fillDemoAccount() {
+      document.getElementById('loginIdentifier').value = 'budi.pratama@email.com';
+      document.getElementById('loginPassword').value = '12345678';
+      showToast('Data akun demo telah diisikan!', 'success');
+    }
+
+    // Toast message
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('authToast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.textContent = msg;
+      if (type === 'success') {
+        toastIcon.className = 'fa-solid fa-circle-check text-green-400 text-base';
+      } else {
+        toastIcon.className = 'fa-solid fa-circle-exclamation text-yellow-400 text-base';
+      }
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2500);
+    }
+
+    // Login Submission
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const identifier = document.getElementById('loginIdentifier').value.trim();
+
+      // Create persistent user object in localStorage
+      const user = {
+        isLoggedIn: true,
+        name: 'Budi Pratama',
+        initials: 'BP',
+        email: identifier.includes('@') ? identifier : 'budi.pratama@email.com',
+        phone: '0812-3456-7890',
+        tier: 'Member Silver',
+        points: 240,
+        unreadNotifications: 3
+      };
+      localStorage.setItem('ngacirtix_user', JSON.stringify(user));
+
+      showToast('Login berhasil! Mengalihkan ke Beranda...', 'success');
+      setTimeout(() => {
+        // Redirect to previous page or index
+        const returnUrl = new URLSearchParams(window.location.search).get('returnUrl') || 'index.html';
+        window.location.href = returnUrl;
+      }, 1000);
+    }
+
+    // Register Submission
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('regFullName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const pass = document.getElementById('regPassword').value;
+      const confPass = document.getElementById('regConfirmPassword').value;
+
+      if (pass !== confPass) {
+        showToast('Konfirmasi kata sandi tidak cocok!', 'warning');
+        return;
+      }
+
+      // Calculate initials
+      const parts = name.split(' ');
+      const initials = parts.length > 1 ? (parts[0][0] + parts[1][0]).toUpperCase() : name.substring(0, 2).toUpperCase();
+
+      const user = {
+        isLoggedIn: true,
+        name: name,
+        initials: initials,
+        email: email,
+        phone: phone,
+        tier: 'Member Baru (Silver)',
+        points: 100, // Bonus pengguna baru
+        unreadNotifications: 1
+      };
+      localStorage.setItem('ngacirtix_user', JSON.stringify(user));
+
+      showToast('Pendaftaran akun berhasil! Selamat datang!', 'success');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1200);
+    }
+
+    // Social Login Simulation
+    function socialLogin(provider) {
+      const user = {
+        isLoggedIn: true,
+        name: 'Budi Pratama (' + provider + ')',
+        initials: 'BP',
+        email: 'budi.pratama@email.com',
+        phone: '0812-3456-7890',
+        tier: 'Member Silver',
+        points: 240,
+        unreadNotifications: 3
+      };
+      localStorage.setItem('ngacirtix_user', JSON.stringify(user));
+      showToast('Login via ' + provider + ' berhasil!', 'success');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000);
+    }
+
+    // Forgot Password
+    function openForgotPasswordModal() {
+      document.getElementById('forgotModal').classList.remove('hidden');
+    }
+    function closeForgotPasswordModal() {
+      document.getElementById('forgotModal').classList.add('hidden');
+    }
+    function submitForgotPassword() {
+      const val = document.getElementById('forgotInput').value.trim();
+      if (!val) {
+        alert('Mohon masukkan email atau nomor HP Anda.');
+        return;
+      }
+      closeForgotPasswordModal();
+      showToast('Link pemulihan kata sandi telah dikirim ke ' + val, 'success');
+    }
+
+    // Check if open tab query param is provided (?tab=register)
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabParam = new URLSearchParams(window.location.search).get('tab');
+      if (tabParam === 'register') {
+        switchAuthTab('register');
+      }
+    });
+  </script>
+</body>
+</html>

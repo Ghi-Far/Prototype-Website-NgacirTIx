@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pusat Bantuan &amp; FAQ – NgacirTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ngacir-blue': '#0A2540',
+            'ngacir-orange': '#FF6B00',
+            'ngacir-bg': '#F4F6F9',
+            'ngacir-light': '#E8F0FE',
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-ngacir-bg text-gray-800 min-h-screen flex flex-col justify-between">
+
+  <!-- ===================== HEADER GLOBAL NGACIRTIX ===================== -->
+  <header class="sticky top-0 z-50 bg-ngacir-blue shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo NgacirTix -->
+        <a href="index.html" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight transition hover:opacity-90">
+          <span class="text-2xl">🚆</span>
+          <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Beranda</a>
+          <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Kereta Api</a>
+          <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bus</a>
+          <a href="promo.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Promo</a>
+          <a href="help.html" class="px-3 py-2 text-white hover:text-ngacir-orange transition text-sm font-medium bg-white/10 rounded-xl">Bantuan</a>
+        </nav>
+
+        <!-- Right Side Actions -->
+        <div class="hidden lg:flex items-center gap-3">
+          <!-- Notifikasi -->
+          <a href="notifications.html" class="relative flex items-center gap-1 text-gray-300 hover:text-white text-sm transition px-2 py-1">
+            <i class="fa-solid fa-bell text-base"></i>
+            <span class="w-4 h-4 bg-ngacir-orange text-white text-[9px] font-extrabold rounded-full flex items-center justify-center absolute -top-1 right-0">3</span>
+          </a>
+
+          <!-- Pesanan Saya -->
+          <a href="history.html" class="flex items-center gap-2 text-gray-200 hover:text-ngacir-orange text-sm font-medium px-3 py-2 rounded-xl hover:bg-white/5 transition">
+            <i class="fa-solid fa-receipt text-xs"></i>
+            <span>Pesanan Saya</span>
+          </a>
+
+          <!-- Profil User & Dropdown -->
+          <div class="relative group">
+            <button class="flex items-center gap-2 pl-2 border-l border-white/15 cursor-pointer py-1">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-ngacir-orange to-amber-400 flex items-center justify-center text-white font-bold text-xs shadow-md">
+                BP
+              </div>
+              <div class="hidden xl:block text-left">
+                <p class="text-xs font-bold text-white group-hover:text-ngacir-orange transition">Budi Pratama</p>
+                <span class="text-[10px] text-gray-400 font-medium block">🥈 Member Silver</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-gray-400 text-[10px] ml-1"></i>
+            </button>
+
+            <!-- Menu Popup -->
+            <div class="hidden group-hover:block absolute right-0 top-full pt-2 w-56 z-50">
+              <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 text-gray-700 text-xs">
+                <div class="px-3 py-2 border-b border-gray-100 mb-1">
+                  <p class="font-bold text-gray-900 text-sm">Budi Pratama</p>
+                  <p class="text-gray-400 text-[11px]">budi.pratama@email.com</p>
+                </div>
+                <a href="history.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-ticket text-gray-400"></i> Tiket &amp; Pesanan Saya
+                </a>
+                <a href="manage.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-arrow-rotate-left text-gray-400"></i> Reschedule &amp; Refund
+                </a>
+                <a href="notifications.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-bell text-gray-400"></i> Notifikasi
+                </a>
+                <div class="pt-1 mt-1 border-t border-gray-100">
+                  <a href="login.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-50 text-red-600 font-bold transition">
+                    <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Hamburger Mobile -->
+        <button id="hamburger" type="button" class="lg:hidden text-white text-xl p-2 rounded-lg hover:bg-white/10 transition" onclick="toggleMenu()" aria-label="Menu">
+          <i class="fa fa-bars" id="hamburger-icon"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-ngacir-blue border-t border-white/10 px-4 pb-4">
+      <nav class="flex flex-col gap-1 mt-2">
+        <a href="index.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Beranda</a>
+        <a href="search.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Kereta Api</a>
+        <a href="history.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Pesanan Saya</a>
+        <a href="notifications.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Notifikasi</a>
+        <a href="promo.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Promo</a>
+        <a href="help.html" class="py-2.5 text-white font-bold text-sm">Bantuan</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO SEARCH SECTION ===================== -->
+  <section class="bg-gradient-to-b from-ngacir-blue via-[#0d3155] to-ngacir-blue text-white py-14 px-4 text-center relative overflow-hidden">
+    <div class="max-w-3xl mx-auto relative z-10 space-y-4">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-orange-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+        <i class="fa-solid fa-headset"></i> Layanan Bantuan Pelanggan 24/7
+      </span>
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight">
+        Ada yang Bisa Kami Bantu Hari Ini?
+      </h1>
+      <p class="text-xs sm:text-sm text-gray-300 max-w-xl mx-auto">
+        Temukan jawaban cepat seputar pemesanan tiket kereta, cara reschedule, pencairan refund, hingga verifikasi boarding pass.
+      </p>
+
+      <!-- Search Input Box -->
+      <div class="pt-2 max-w-2xl mx-auto">
+        <div class="relative flex items-center">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+            <i class="fa-solid fa-magnifying-glass text-base"></i>
+          </span>
+          <input 
+            type="text" 
+            id="faqSearchInput" 
+            onkeyup="searchFAQ()" 
+            placeholder="Ketik topik pertanyaan, contoh: 'refund', 'ganti jadwal', 'bca'..." 
+            class="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white text-gray-800 placeholder-gray-400 text-xs sm:text-sm shadow-xl font-medium focus:ring-4 focus:ring-orange-500/30 outline-none transition" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TOPIC CARDS ===================== -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 -mt-6 relative z-20 pb-12">
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      
+      <!-- Topik 1: Reschedule & Refund -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 hover:border-ngacir-orange hover:shadow-md transition group">
+        <div class="w-10 h-10 rounded-xl bg-orange-100 text-ngacir-orange flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition">
+          <i class="fa-solid fa-arrow-rotate-left"></i>
+        </div>
+        <h3 class="font-bold text-sm text-gray-900">Reschedule &amp; Refund</h3>
+        <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+          Aturan bea pembatalan 25%, tenggat pengajuan tiket, dan transfer dana via BI-FAST.
+        </p>
+        <a href="manage.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-ngacir-orange mt-3 hover:underline">
+          Kelola Tiket Saya <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Topik 2: Pembayaran -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 hover:border-ngacir-orange hover:shadow-md transition group">
+        <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition">
+          <i class="fa-solid fa-wallet"></i>
+        </div>
+        <h3 class="font-bold text-sm text-gray-900">Pembayaran &amp; VA</h3>
+        <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+          Petunjuk transfer Virtual Account BCA, batas hitung mundur pembayaran 2 jam.
+        </p>
+        <a href="payment.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-ngacir-blue mt-3 hover:underline">
+          Simulasi Bayar <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Topik 3: Boarding Pass & E-Tiket -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 hover:border-ngacir-orange hover:shadow-md transition group">
+        <div class="w-10 h-10 rounded-xl bg-green-100 text-green-600 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition">
+          <i class="fa-solid fa-qrcode"></i>
+        </div>
+        <h3 class="font-bold text-sm text-gray-900">E-Tiket &amp; Boarding</h3>
+        <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+          Scan barcode langsung dari HP dan fitur Face Recognition tanpa cetak stasiun.
+        </p>
+        <a href="eticket.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-green-600 mt-3 hover:underline">
+          Lihat E-Tiket <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Topik 4: Akun & NgacirPoints -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-200 hover:border-ngacir-orange hover:shadow-md transition group">
+        <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h3 class="font-bold text-sm text-gray-900">Akun &amp; Privasi</h3>
+        <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+          Keamanan enkripsi NIK KTP, profil penumpang, dan tukar reward poin diskon.
+        </p>
+        <a href="history.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-purple-600 mt-3 hover:underline">
+          Cek Poin Member <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Layout 2 Kolom: FAQ Accordion (8 cols) & Live Support Widget (4 cols) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- FAQ ACCORDION LIST (8 cols) -->
+      <div class="lg:col-span-8 space-y-4">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <i class="fa-solid fa-circle-question text-ngacir-orange"></i>
+            <span>Pertanyaan yang Sering Diajukan (FAQ)</span>
+          </h2>
+          <span class="text-xs text-gray-400">5 Topik Terpopuler</span>
+        </div>
+
+        <div id="faqList" class="space-y-3">
+          
+          <!-- Item 1 -->
+          <div class="faq-card bg-white rounded-2xl border border-gray-200 overflow-hidden transition shadow-2xs">
+            <button onclick="toggleFaq(1)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-gray-800 hover:text-ngacir-orange transition">
+              <span>Berapa batas waktu untuk mengajukan perubahan jadwal (Reschedule) kereta api?</span>
+              <i id="faqIcon-1" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200"></i>
+            </button>
+            <div id="faqAnswer-1" class="hidden px-4 sm:px-5 pb-5 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
+              Pengajuan Reschedule tiket kereta api dapat dilakukan paling lambat <strong>2 jam sebelum jadwal keberangkatan kereta</strong> tertera pada tiket. Jika kereta baru memiliki tarif lebih tinggi, pemesan hanya perlu membayar selisih tarif ditambah bea administrasi resmi 25% sesuai ketentuan PT Kereta Api Indonesia (Persero).
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="faq-card bg-white rounded-2xl border border-gray-200 overflow-hidden transition shadow-2xs">
+            <button onclick="toggleFaq(2)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-gray-800 hover:text-ngacir-orange transition">
+              <span>Berapa potongan biaya pembatalan (Refund) dan kapan dana masuk ke rekening?</span>
+              <i id="faqIcon-2" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200"></i>
+            </button>
+            <div id="faqAnswer-2" class="hidden px-4 sm:px-5 pb-5 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
+              Sesuai regulasi resmi KAI, bea pembatalan adalah sebesar <strong>25% dari tarif tiket</strong> (di luar biaya layanan jika ada). Dana sisa (75%) akan ditransfer secara instan melalui sistem perbankan BI-FAST ke rekening BCA atau bank yang Anda daftarkan dalam waktu 1x24 jam (paling lambat 7-14 hari kerja). Anda dapat memantau status pencairan langsung di menu <a href="refund-status.html" class="text-ngacir-orange font-bold hover:underline">Status Pencairan Refund</a>.
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="faq-card bg-white rounded-2xl border border-gray-200 overflow-hidden transition shadow-2xs">
+            <button onclick="toggleFaq(3)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-gray-800 hover:text-ngacir-orange transition">
+              <span>Apakah saya harus mencetak boarding pass fisik di stasiun sebelum naik kereta?</span>
+              <i id="faqIcon-3" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200"></i>
+            </button>
+            <div id="faqAnswer-3" class="hidden px-4 sm:px-5 pb-5 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
+              <strong>Tidak perlu!</strong> NgacirTix telah terintegrasi dengan sistem Boarding Pass Digital KAI. Anda cukup menunjukkan QR Code yang ada di <a href="eticket.html" class="text-ngacir-orange font-bold hover:underline">E-Tiket NgacirTix</a> dari smartphone atau menggunakan fasilitas gerbang Face Recognition Boarding di stasiun (seperti di Gambir, Bandung, dan Yogyakarta).
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="faq-card bg-white rounded-2xl border border-gray-200 overflow-hidden transition shadow-2xs">
+            <button onclick="toggleFaq(4)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-gray-800 hover:text-ngacir-orange transition">
+              <span>Apa yang terjadi jika saya terlambat membayar nomor Virtual Account?</span>
+              <i id="faqIcon-4" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200"></i>
+            </button>
+            <div id="faqAnswer-4" class="hidden px-4 sm:px-5 pb-5 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
+              Nomor Virtual Account memiliki batas waktu pembayaran selama 2 jam. Jika batas waktu habis sebelum Anda mentransfer dana, pesanan akan dibatalkan otomatis oleh sistem dan kursi akan kembali dilepas untuk penumpang lain. Anda dapat melakukan pencarian dan pemesanan tiket baru kapan saja melalui halaman Beranda.
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="faq-card bg-white rounded-2xl border border-gray-200 overflow-hidden transition shadow-2xs">
+            <button onclick="toggleFaq(5)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-gray-800 hover:text-ngacir-orange transition">
+              <span>Bagaimana cara menggunakan kode voucher promo saat memesan tiket?</span>
+              <i id="faqIcon-5" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200"></i>
+            </button>
+            <div id="faqAnswer-5" class="hidden px-4 sm:px-5 pb-5 pt-1 text-xs text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
+              Anda dapat menyalin kode kupon diskon dari halaman <a href="promo.html" class="text-ngacir-orange font-bold hover:underline">Katalog Promo</a> (contoh: <code>NGACIRKAI</code>). Masukkan kode tersebut pada kotak promo di halaman pembayaran untuk mendapatkan potongan instan hingga Rp20.000.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- SISI KANAN: WIDGET HUBUNGI CS (4 cols) -->
+      <div class="lg:col-span-4 space-y-6">
+        
+        <!-- Box Kontak CS 24 Jam -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 pb-3 border-b border-gray-100">
+            <div class="w-10 h-10 rounded-xl bg-orange-100 text-ngacir-orange flex items-center justify-center font-bold text-lg">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 text-sm">Hubungi Layanan CS</h4>
+              <p class="text-xs text-green-600 font-semibold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Agen Sedang Online
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-green-50 hover:bg-green-100 border border-green-200 transition text-xs">
+              <i class="fa-brands fa-whatsapp text-green-600 text-xl shrink-0"></i>
+              <div class="flex-1">
+                <p class="font-bold text-gray-800">WhatsApp Resmi</p>
+                <p class="text-gray-500 text-[11px]">+62 812-3456-7890 (Respon &lt; 2 menit)</p>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square text-green-600 text-xs"></i>
+            </a>
+
+            <!-- Call Center -->
+            <a href="tel:1500999" class="flex items-center gap-3 p-3 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200 transition text-xs">
+              <i class="fa-solid fa-phone text-blue-600 text-lg shrink-0"></i>
+              <div class="flex-1">
+                <p class="font-bold text-gray-800">Call Center 24 Jam</p>
+                <p class="text-gray-500 text-[11px]">1500-NGACIR (Bebas Pulsa)</p>
+              </div>
+              <i class="fa-solid fa-chevron-right text-blue-600 text-xs"></i>
+            </a>
+
+            <!-- Email CS -->
+            <a href="mailto:support@ngacirtix.com" class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-200 transition text-xs">
+              <i class="fa-solid fa-envelope text-gray-600 text-lg shrink-0"></i>
+              <div class="flex-1">
+                <p class="font-bold text-gray-800">Email Customer Support</p>
+                <p class="text-gray-500 text-[11px]">support@ngacirtix.com</p>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Live Chat Button Trigger -->
+          <button type="button" onclick="openChatModal()" class="w-full py-3 rounded-xl bg-ngacir-orange hover:bg-orange-600 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-comments"></i>
+            <span>Mulai Obrolan Live Chat</span>
+          </button>
+        </div>
+
+        <!-- Kantor Operasional -->
+        <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm text-xs text-gray-600 space-y-2">
+          <p class="font-bold text-gray-900 flex items-center gap-2">
+            <i class="fa-solid fa-location-dot text-ngacir-orange"></i> Kantor Pusat NgacirTix
+          </p>
+          <p class="leading-relaxed text-[11px]">
+            Gedung Transportasi Digital Lt. 12, Jl. Jenderal Sudirman Kav. 28, Jakarta Pusat 10220, Indonesia.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ===================== MODAL LIVE CHAT SIMULASI ===================== -->
+  <div id="chatModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center px-4">
+    <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl flex flex-col h-[520px]">
+      <!-- Header Chat -->
+      <div class="bg-ngacir-blue text-white p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-ngacir-orange text-white flex items-center justify-center font-bold text-sm">
+            🤖
+          </div>
+          <div>
+            <h4 class="font-bold text-xs sm:text-sm">NgacirBot Support</h4>
+            <span class="text-[10px] text-green-300 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span> Online Otomatis
+            </span>
+          </div>
+        </div>
+        <button type="button" onclick="closeChatModal()" class="text-white/80 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Body Chat -->
+      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 text-xs">
+        <div class="flex items-start gap-2">
+          <div class="w-7 h-7 rounded-full bg-ngacir-orange text-white flex items-center justify-center text-xs shrink-0">🤖</div>
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-gray-200 shadow-2xs max-w-[80%] leading-relaxed text-gray-800">
+            Halo Kak <strong>Budi Pratama</strong>! Ada kendala dengan tiket KA Argo Dwipangga (PNR: 6X9Y4K) atau butuh info lain? Silakan pilih pertanyaan di bawah atau ketik langsung ya! 😊
+          </div>
+        </div>
+
+        <!-- Quick options -->
+        <div class="flex flex-wrap gap-1.5 pl-9">
+          <button type="button" onclick="sendQuickReply('Status Refund Saya')" class="px-2.5 py-1 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-800 text-[11px] font-semibold transition">
+            💸 Status Refund
+          </button>
+          <button type="button" onclick="sendQuickReply('Cara Reschedule')" class="px-2.5 py-1 rounded-full bg-orange-100 hover:bg-orange-200 text-ngacir-orange text-[11px] font-semibold transition">
+            🔄 Cara Reschedule
+          </button>
+          <button type="button" onclick="sendQuickReply('Cetak E-Tiket')" class="px-2.5 py-1 rounded-full bg-green-100 hover:bg-green-200 text-green-800 text-[11px] font-semibold transition">
+            🎟️ Cetak E-Tiket
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Chat -->
+      <div class="p-3 bg-white border-t border-gray-200 flex items-center gap-2">
+        <input 
+          type="text" 
+          id="chatInput" 
+          placeholder="Ketik pesan Anda..." 
+          onkeydown="if(event.key === 'Enter') sendChatMessage()"
+          class="flex-1 px-3.5 py-2 rounded-xl border border-gray-300 text-xs outline-none focus:border-ngacir-orange" />
+        <button type="button" onclick="sendChatMessage()" class="w-9 h-9 rounded-xl bg-ngacir-orange hover:bg-orange-600 text-white flex items-center justify-center text-xs transition cursor-pointer">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-ngacir-blue text-white border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <p>&copy; 2026 NgacirTix. Platform Resmi Tiket Transportasi Darat.</p>
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="hover:text-white transition">Beranda</a>
+          <a href="search.html" class="hover:text-white transition">Cari Tiket</a>
+          <a href="history.html" class="hover:text-white transition">Pesanan Saya</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('hamburger-icon');
+      if (menu && icon) {
+        menu.classList.toggle('hidden');
+        icon.className = menu.classList.contains('hidden') ? 'fa fa-bars' : 'fa fa-times';
+      }
+    }
+
+    // Toggle FAQ Accordion
+    function toggleFaq(id) {
+      const ans = document.getElementById('faqAnswer-' + id);
+      const icon = document.getElementById('faqIcon-' + id);
+      if (ans.classList.contains('hidden')) {
+        ans.classList.remove('hidden');
+        icon.classList.add('rotate-180', 'text-ngacir-orange');
+      } else {
+        ans.classList.add('hidden');
+        icon.classList.remove('rotate-180', 'text-ngacir-orange');
+      }
+    }
+
+    // Search FAQ Filter
+    function searchFAQ() {
+      const q = document.getElementById('faqSearchInput').value.toLowerCase();
+      document.querySelectorAll('.faq-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(q)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Live Chat Modal Handlers
+    function openChatModal() {
+      document.getElementById('chatModal').classList.remove('hidden');
+    }
+    function closeChatModal() {
+      document.getElementById('chatModal').classList.add('hidden');
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      appendChatBubble(msg, 'user');
+      input.value = '';
+      simulateBotReply(msg);
+    }
+
+    function sendQuickReply(text) {
+      appendChatBubble(text, 'user');
+      simulateBotReply(text);
+    }
+
+    function appendChatBubble(text, sender) {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      if (sender === 'user') {
+        div.className = 'flex items-end justify-end gap-2';
+        div.innerHTML = `
+          <div class="bg-ngacir-orange text-white p-3 rounded-2xl rounded-tr-none shadow-2xs max-w-[80%] text-xs leading-relaxed">
+            ${text}
+          </div>
+        `;
+      } else {
+        div.className = 'flex items-start gap-2';
+        div.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-ngacir-orange text-white flex items-center justify-center text-xs shrink-0">🤖</div>
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-gray-200 shadow-2xs max-w-[80%] text-xs leading-relaxed text-gray-800">
+            ${text}
+          </div>
+        `;
+      }
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function simulateBotReply(msg) {
+      setTimeout(() => {
+        const lower = msg.toLowerCase();
+        let reply = "Terima kasih atas pesan Anda! Agen Customer Service kami akan menindaklanjuti pertanyaan Anda segera.";
+        if (lower.includes('refund')) {
+          reply = "Pengembalian dana untuk PNR 6X9Y4K sebesar Rp412.500 telah berhasil ditransfer ke rekening BCA Anda via BI-FAST. Kakak bisa mengunduh dokumen resminya di halaman <a href='refund-status.html' class='text-ngacir-orange font-bold underline'>Status Refund</a>.";
+        } else if (lower.includes('reschedule') || lower.includes('jadwal')) {
+          reply = "Untuk ubah jadwal KA Argo Dwipangga, silakan buka <a href='manage.html' class='text-ngacir-orange font-bold underline'>Pusat Reschedule</a> kami sebelum 20 Nov 2026 pukul 06:50 WIB.";
+        } else if (lower.includes('tiket') || lower.includes('cetak') || lower.includes('boarding')) {
+          reply = "E-Tiket resmi dan QR Code boarding KA Argo Dwipangga dapat dilihat langsung di menu <a href='eticket.html' class='text-ngacir-orange font-bold underline'>E-Tiket & Boarding Pass</a>.";
+        }
+        appendChatBubble(reply, 'bot');
+      }, 700);
+    }
+  </script>
+</body>
+</html>

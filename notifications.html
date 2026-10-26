@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifikasi &amp; Info Perjalanan – NgacirTix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ngacir-blue': '#0A2540',
+            'ngacir-orange': '#FF6B00',
+            'ngacir-bg': '#F4F6F9',
+            'ngacir-light': '#E8F0FE',
+          },
+          fontFamily: { sans: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans bg-ngacir-bg text-gray-800 min-h-screen flex flex-col justify-between">
+
+  <!-- ===================== HEADER GLOBAL NGACIRTIX ===================== -->
+  <header class="sticky top-0 z-50 bg-ngacir-blue shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo NgacirTix -->
+        <a href="index.html" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight transition hover:opacity-90">
+          <span class="text-2xl">🚆</span>
+          <span>Ngacir<span class="text-ngacir-orange">Tix</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Beranda</a>
+          <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Kereta Api</a>
+          <a href="search.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bus</a>
+          <a href="promo.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Promo</a>
+          <a href="help.html" class="px-3 py-2 text-gray-300 hover:text-ngacir-orange transition text-sm font-medium">Bantuan</a>
+        </nav>
+
+        <!-- Right Side Actions -->
+        <div class="hidden lg:flex items-center gap-3">
+          <!-- Notifikasi (Aktif) -->
+          <a href="notifications.html" class="relative flex items-center gap-1.5 text-ngacir-orange bg-white/10 px-3 py-1.5 rounded-xl text-sm font-semibold transition">
+            <i class="fa-solid fa-bell text-base"></i>
+            <span>Notifikasi</span>
+            <span id="headerNotifBadge" class="w-5 h-5 bg-ngacir-orange text-white text-[10px] font-extrabold rounded-full flex items-center justify-center">3</span>
+          </a>
+
+          <!-- Pesanan Saya -->
+          <a href="history.html" class="flex items-center gap-2 text-gray-200 hover:text-ngacir-orange text-sm font-medium px-3 py-2 rounded-xl hover:bg-white/5 transition">
+            <i class="fa-solid fa-receipt text-xs"></i>
+            <span>Pesanan Saya</span>
+          </a>
+
+          <!-- Profil User & Dropdown -->
+          <div class="relative group">
+            <button class="flex items-center gap-2 pl-2 border-l border-white/15 cursor-pointer py-1">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-ngacir-orange to-amber-400 flex items-center justify-center text-white font-bold text-xs shadow-md">
+                BP
+              </div>
+              <div class="hidden xl:block text-left">
+                <p class="text-xs font-bold text-white group-hover:text-ngacir-orange transition">Budi Pratama</p>
+                <span class="text-[10px] text-gray-400 font-medium block">🥈 Member Silver</span>
+              </div>
+              <i class="fa-solid fa-chevron-down text-gray-400 text-[10px] ml-1"></i>
+            </button>
+
+            <!-- Menu Popup -->
+            <div class="hidden group-hover:block absolute right-0 top-full pt-2 w-56 z-50">
+              <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 text-gray-700 text-xs">
+                <div class="px-3 py-2 border-b border-gray-100 mb-1">
+                  <p class="font-bold text-gray-900 text-sm">Budi Pratama</p>
+                  <p class="text-gray-400 text-[11px]">budi.pratama@email.com</p>
+                  <span class="inline-block mt-1 px-2 py-0.5 rounded-full bg-orange-100 text-ngacir-orange font-bold text-[10px]">🪙 240 NgacirPoints</span>
+                </div>
+                <a href="history.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-ticket text-gray-400"></i> Tiket &amp; Pesanan Saya
+                </a>
+                <a href="manage.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-solid fa-arrow-rotate-left text-gray-400"></i> Reschedule &amp; Refund
+                </a>
+                <a href="notifications.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-orange-50 text-ngacir-orange transition font-bold">
+                  <i class="fa-solid fa-bell text-ngacir-orange"></i> Notifikasi Masuk
+                </a>
+                <a href="help.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition font-medium">
+                  <i class="fa-regular fa-circle-question text-gray-400"></i> Bantuan &amp; FAQ
+                </a>
+                <div class="pt-1 mt-1 border-t border-gray-100">
+                  <button type="button" onclick="logoutUser()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-50 text-red-600 font-bold transition text-left cursor-pointer">
+                    <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Hamburger Mobile -->
+        <button id="hamburger" type="button" class="lg:hidden text-white text-xl p-2 rounded-lg hover:bg-white/10 transition" onclick="toggleMenu()" aria-label="Menu">
+          <i class="fa fa-bars" id="hamburger-icon"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-ngacir-blue border-t border-white/10 px-4 pb-4">
+      <nav class="flex flex-col gap-1 mt-2">
+        <a href="index.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Beranda</a>
+        <a href="search.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Kereta Api</a>
+        <a href="history.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Pesanan Saya</a>
+        <a href="notifications.html" class="py-2.5 text-ngacir-orange text-sm font-bold border-b border-white/5 flex items-center justify-between">
+          <span>Notifikasi</span>
+          <span class="w-5 h-5 bg-ngacir-orange text-white text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+        </a>
+        <a href="promo.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Promo</a>
+        <a href="help.html" class="py-2.5 text-gray-300 text-sm font-medium border-b border-white/5">Bantuan</a>
+      </nav>
+      <div class="flex items-center justify-between mt-3 pt-3 border-t border-white/10">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-ngacir-orange text-white flex items-center justify-center font-bold text-xs">BP</div>
+          <div>
+            <p class="text-white text-xs font-bold">Budi Pratama</p>
+            <span class="text-[10px] text-gray-400">🥈 Member Silver</span>
+          </div>
+        </div>
+        <button onclick="logoutUser()" class="text-xs text-red-400 hover:text-red-300 font-semibold">Keluar</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Breadcrumb & Top Bar -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div>
+        <div class="flex items-center gap-2 text-xs text-gray-500 mb-1">
+          <a href="index.html" class="hover:text-ngacir-orange transition">Beranda</a>
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          <span class="text-ngacir-blue font-semibold">Notifikasi &amp; Pembaruan</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-gray-900 flex items-center gap-3">
+          <span>Pusat Notifikasi</span>
+          <span id="unreadBadgeCounter" class="text-xs font-bold px-2.5 py-1 rounded-full bg-orange-100 text-ngacir-orange border border-orange-200">
+            3 Belum Dibaca
+          </span>
+        </h1>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button type="button" onclick="markAllAsRead()" class="px-3.5 py-2 rounded-xl bg-white border border-gray-200 hover:border-ngacir-orange text-xs font-bold text-gray-700 hover:text-ngacir-orange transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+          <i class="fa-solid fa-check-double text-green-500"></i>
+          <span>Tandai Semua Dibaca</span>
+        </button>
+        <button type="button" onclick="clearAllNotifications()" class="px-3.5 py-2 rounded-xl bg-white border border-gray-200 hover:bg-red-50 hover:border-red-200 text-xs font-semibold text-gray-500 hover:text-red-600 transition flex items-center gap-1.5 shadow-2xs cursor-pointer">
+          <i class="fa-regular fa-trash-can"></i>
+          <span>Bersihkan</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Layout Grid: List Notif (8 cols) & Sidebar Widget (4 cols) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- SISI KIRI: TAB & DAFTAR NOTIFIKASI (8 cols) -->
+      <div class="lg:col-span-8 space-y-4">
+        
+        <!-- Tab Filter Category -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <button onclick="filterNotifTab('all')" id="tabAll" class="notif-tab px-4 py-2 rounded-xl text-xs font-bold bg-ngacir-orange text-white shadow-sm transition whitespace-nowrap">
+            Semua (5)
+          </button>
+          <button onclick="filterNotifTab('transaksi')" id="tabTransaksi" class="notif-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap">
+            Transaksi &amp; Tiket (2)
+          </button>
+          <button onclick="filterNotifTab('perjalanan')" id="tabPerjalanan" class="notif-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap">
+            Info Perjalanan (1)
+          </button>
+          <button onclick="filterNotifTab('promo')" id="tabPromo" class="notif-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap">
+            Promo &amp; Reward (2)
+          </button>
+        </div>
+
+        <!-- Container Daftar Notifikasi -->
+        <div id="notificationsContainer" class="space-y-3">
+
+          <!-- Card 1: E-Tiket Terbit (Transaksi - Unread) -->
+          <div class="notif-item bg-white rounded-2xl p-4 sm:p-5 border-2 border-orange-200 shadow-sm relative transition hover:shadow-md" data-category="transaksi" data-read="false">
+            <span class="notif-dot absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-ngacir-orange"></span>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-orange-100 text-ngacir-orange flex items-center justify-center shrink-0 text-lg">
+                <i class="fa-solid fa-ticket"></i>
+              </div>
+              <div class="flex-1 pr-6">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100 text-blue-800">TIKET ELEKTRONIK</span>
+                  <span class="text-xs text-gray-400">10 Menit yang lalu</span>
+                </div>
+                <h3 class="text-sm font-bold text-gray-900 leading-snug">
+                  E-Tiket &amp; Boarding Pass Resmi Telah Terbit! 🎟️
+                </h3>
+                <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                  Pemesanan KA Argo Dwipangga (PNR: <strong>6X9Y4K</strong>) untuk Budi Pratama telah lunas. Barcode boarding sudah aktif dan siap digunakan di stasiun.
+                </p>
+                <div class="flex flex-wrap items-center gap-3 mt-3 pt-3 border-t border-gray-100">
+                  <a href="eticket.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-ngacir-orange hover:bg-orange-600 text-white text-xs font-bold shadow-2xs transition">
+                    <i class="fa-solid fa-qrcode"></i> Buka E-Tiket
+                  </a>
+                  <a href="manage.html" class="inline-flex items-center gap-1 text-xs font-semibold text-gray-600 hover:text-ngacir-blue transition">
+                    Kelola Tiket <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Refund Berhasil (Transaksi - Unread) -->
+          <div class="notif-item bg-white rounded-2xl p-4 sm:p-5 border-2 border-green-200 shadow-sm relative transition hover:shadow-md" data-category="transaksi" data-read="false">
+            <span class="notif-dot absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-green-500"></span>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-green-100 text-green-600 flex items-center justify-center shrink-0 text-lg">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+              </div>
+              <div class="flex-1 pr-6">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-green-100 text-green-800">REFUND CAIR</span>
+                  <span class="text-xs text-gray-400">1 Jam yang lalu</span>
+                </div>
+                <h3 class="text-sm font-bold text-gray-900 leading-snug">
+                  Pengembalian Dana Rp412.500 Berhasil Ditransfer! 💸
+                </h3>
+                <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                  Dana pembatalan tiket KA Argo Dwipangga telah dikreditkan ke rekening Bank Central Asia (BCA) Anda secara instan via jaringan BI-FAST.
+                </p>
+                <div class="flex items-center gap-3 mt-3 pt-3 border-t border-gray-100">
+                  <a href="refund-status.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-green-600 hover:bg-green-700 text-white text-xs font-bold shadow-2xs transition">
+                    <i class="fa-solid fa-file-pdf"></i> Unduh Bukti Transfer
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Pengingat Keberangkatan (Perjalanan - Unread) -->
+          <div class="notif-item bg-white rounded-2xl p-4 sm:p-5 border-2 border-orange-200 shadow-sm relative transition hover:shadow-md" data-category="perjalanan" data-read="false">
+            <span class="notif-dot absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-ngacir-orange"></span>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 text-lg">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <div class="flex-1 pr-6">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-blue-100 text-blue-800">PENGINGAT PERJALANAN</span>
+                  <span class="text-xs text-gray-400">3 Jam yang lalu</span>
+                </div>
+                <h3 class="text-sm font-bold text-gray-900 leading-snug">
+                  Kereta Anda Berangkat Besok Pukul 08:50 WIB 🚆
+                </h3>
+                <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                  KA Argo Dwipangga (Gambir -> Yogyakarta). Gate boarding dibuka 45 menit sebelum keberangkatan. Gunakan fasilitas Face Recognition di Pintu Selatan Stasiun Gambir.
+                </p>
+                <div class="flex items-center gap-3 mt-3 pt-3 border-t border-gray-100">
+                  <a href="history.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-ngacir-blue hover:bg-[#12365c] text-white text-xs font-bold shadow-2xs transition">
+                    <i class="fa-solid fa-train"></i> Cek Jadwal &amp; Stasiun
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Promo Gajian KAI (Promo - Read) -->
+          <div class="notif-item bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm relative transition hover:shadow-md" data-category="promo" data-read="true">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 text-lg">
+                <i class="fa-solid fa-tag"></i>
+              </div>
+              <div class="flex-1 pr-6">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-purple-100 text-purple-800">VOUCHER PROMO</span>
+                  <span class="text-xs text-gray-400">Kemarin, 14:20</span>
+                </div>
+                <h3 class="text-sm font-bold text-gray-900 leading-snug">
+                  Promo Gajian Transportasi! Diskon Tiket Rp20.000 🏷️
+                </h3>
+                <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                  Gunakan kode voucher <strong>NGACIRKAI</strong> untuk pemesanan tiket kereta eksekutif rute Jakarta, Bandung, dan Yogyakarta.
+                </p>
+                <div class="flex items-center gap-3 mt-3 pt-3 border-t border-gray-100">
+                  <a href="promo.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-2xs transition">
+                    <i class="fa-solid fa-ticket-simple"></i> Klaim Kupon Promo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Member Level Up (Promo/Reward - Read) -->
+          <div class="notif-item bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm relative transition hover:shadow-md" data-category="promo" data-read="true">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 text-lg">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div class="flex-1 pr-6">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-800">LOYALTY REWARD</span>
+                  <span class="text-xs text-gray-400">3 Hari lalu</span>
+                </div>
+                <h3 class="text-sm font-bold text-gray-900 leading-snug">
+                  Selamat! Anda Telah Mencapai Tingkat Member Silver 🥈
+                </h3>
+                <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                  Saldo Anda saat ini: <strong>240 NgacirPoints</strong>. Nikmati keuntungan bebas biaya layanan platform dan voucher diskon bulanan eksklusif.
+                </p>
+                <div class="flex items-center gap-3 mt-3 pt-3 border-t border-gray-100">
+                  <a href="history.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-900 text-white text-xs font-bold shadow-2xs transition">
+                    <i class="fa-solid fa-coins text-amber-400"></i> Cek Riwayat Poin
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="notifEmptyState" class="hidden bg-white rounded-2xl p-12 text-center border border-gray-200">
+          <div class="w-16 h-16 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto text-2xl mb-3">
+            <i class="fa-regular fa-bell-slash"></i>
+          </div>
+          <h4 class="font-bold text-gray-800 text-base">Tidak Ada Notifikasi</h4>
+          <p class="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
+            Semua pembaruan terkait tiket perjalanan dan promo akan muncul di halaman ini.
+          </p>
+          <a href="index.html" class="inline-block mt-4 px-5 py-2.5 rounded-xl bg-ngacir-orange text-white text-xs font-bold hover:bg-orange-600 transition shadow">
+            Cari Tiket Sekarang
+          </a>
+        </div>
+
+      </div>
+
+      <!-- SISI KANAN: SIDEBAR PROFIL & PENGATURAN CEPAT (4 cols) -->
+      <div class="lg:col-span-4 space-y-6">
+
+        <!-- Card Profil & Poin -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+          <div class="flex items-center gap-3 pb-4 border-b border-gray-100">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-ngacir-orange to-amber-400 text-white font-extrabold text-base flex items-center justify-center shadow-md">
+              BP
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 text-sm">Budi Pratama</h4>
+              <p class="text-xs text-gray-500">budi.pratama@email.com</p>
+              <span class="inline-block mt-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">🥈 Silver Voyager</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-4">
+            <div class="p-3 bg-gray-50 rounded-xl border border-gray-100">
+              <span class="text-[10px] text-gray-500 font-bold block uppercase">NgacirPoints</span>
+              <span class="text-lg font-black text-ngacir-orange">240 Pts</span>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-xl border border-gray-100">
+              <span class="text-[10px] text-gray-500 font-bold block uppercase">Tiket Aktif</span>
+              <span class="text-lg font-black text-ngacir-blue">1 Tiket</span>
+            </div>
+          </div>
+
+          <a href="history.html" class="w-full mt-4 py-2.5 rounded-xl bg-ngacir-light hover:bg-blue-100 text-ngacir-blue font-bold text-xs flex items-center justify-center gap-2 transition">
+            <i class="fa-solid fa-train"></i> Buka Pesanan Aktif
+          </a>
+        </div>
+
+        <!-- Preferensi Notifikasi Pengguna -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+            <h4 class="font-bold text-gray-900 text-sm">Saluran Notifikasi</h4>
+            <i class="fa-solid fa-sliders text-gray-400 text-xs"></i>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <label class="flex items-center justify-between cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition">
+              <div>
+                <p class="font-bold text-gray-800">WhatsApp Reminder</p>
+                <p class="text-[11px] text-gray-400">Pengingat H-1 keberangkatan</p>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 text-ngacir-orange rounded border-gray-300 focus:ring-ngacir-orange" />
+            </label>
+
+            <label class="flex items-center justify-between cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition">
+              <div>
+                <p class="font-bold text-gray-800">Email E-Tiket &amp; PDF</p>
+                <p class="text-[11px] text-gray-400">Kirim salinan invoice dan barcode</p>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 text-ngacir-orange rounded border-gray-300 focus:ring-ngacir-orange" />
+            </label>
+
+            <label class="flex items-center justify-between cursor-pointer p-2 rounded-xl hover:bg-gray-50 transition">
+              <div>
+                <p class="font-bold text-gray-800">Promo &amp; Flash Sale</p>
+                <p class="text-[11px] text-gray-400">Info kupon diskon bulanan</p>
+              </div>
+              <input type="checkbox" checked class="w-4 h-4 text-ngacir-orange rounded border-gray-300 focus:ring-ngacir-orange" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Bantuan Cepat -->
+        <div class="bg-gradient-to-br from-ngacir-blue to-[#13375c] text-white rounded-2xl p-5 shadow-sm space-y-3">
+          <div class="flex items-center gap-2 text-orange-300 font-bold text-xs uppercase tracking-wider">
+            <i class="fa-regular fa-life-ring"></i>
+            <span>Ada Pertanyaan?</span>
+          </div>
+          <h4 class="font-bold text-sm leading-snug">Pusat Layanan Pelanggan 24/7 Siap Membantu</h4>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            Perlu konfirmasi jadwal atau panduan refund tiket? Hubungi agen support kami langsung.
+          </p>
+          <a href="help.html" class="inline-flex items-center gap-2 bg-ngacir-orange hover:bg-orange-600 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
+            <span>Buka Pusat Bantuan</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ===================== FOOTER GLOBAL NGACIRTIX ===================== -->
+  <footer class="bg-ngacir-blue text-white mt-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🚆</span>
+          <span class="text-white font-bold text-sm">Ngacir<span class="text-ngacir-orange">Tix</span></span>
+          <span class="text-gray-500">| Perjalanan Tanpa Hambatan</span>
+        </div>
+        <p>&copy; 2026 NgacirTix. Seluruh hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // Mobile Drawer Toggle
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('hamburger-icon');
+      if (menu && icon) {
+        menu.classList.toggle('hidden');
+        icon.className = menu.classList.contains('hidden') ? 'fa fa-bars' : 'fa fa-times';
+      }
+    }
+
+    // Filter Notification Tabs
+    function filterNotifTab(category) {
+      document.querySelectorAll('.notif-tab').forEach(tab => {
+        tab.className = 'notif-tab px-4 py-2 rounded-xl text-xs font-semibold bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition whitespace-nowrap';
+      });
+
+      const activeBtn = document.getElementById('tab' + category.charAt(0).toUpperCase() + category.slice(1));
+      if (activeBtn) {
+        activeBtn.className = 'notif-tab px-4 py-2 rounded-xl text-xs font-bold bg-ngacir-orange text-white shadow-sm transition whitespace-nowrap';
+      }
+
+      const items = document.querySelectorAll('.notif-item');
+      let visibleCount = 0;
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      const empty = document.getElementById('notifEmptyState');
+      if (visibleCount === 0) {
+        empty.classList.remove('hidden');
+      } else {
+        empty.classList.add('hidden');
+      }
+    }
+
+    // Mark All as Read
+    function markAllAsRead() {
+      document.querySelectorAll('.notif-item').forEach(item => {
+        item.dataset.read = "true";
+        item.classList.remove('border-2', 'border-orange-200', 'border-green-200');
+        item.classList.add('border', 'border-gray-200');
+        const dot = item.querySelector('.notif-dot');
+        if (dot) dot.remove();
+      });
+
+      // Update counters
+      const badge = document.getElementById('unreadBadgeCounter');
+      if (badge) {
+        badge.textContent = '0 Belum Dibaca';
+        badge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-gray-100 text-gray-500 border border-gray-200';
+      }
+      const headerBadge = document.getElementById('headerNotifBadge');
+      if (headerBadge) {
+        headerBadge.remove();
+      }
+
+      // Update localStorage
+      const user = JSON.parse(localStorage.getItem('ngacirtix_user')) || {};
+      user.unreadNotifications = 0;
+      localStorage.setItem('ngacirtix_user', JSON.stringify(user));
+    }
+
+    // Clear All
+    function clearAllNotifications() {
+      if (confirm('Hapus seluruh riwayat notifikasi?')) {
+        document.getElementById('notificationsContainer').innerHTML = '';
+        document.getElementById('notifEmptyState').classList.remove('hidden');
+        const badge = document.getElementById('unreadBadgeCounter');
+        if (badge) badge.textContent = '0 Belum Dibaca';
+        const headerBadge = document.getElementById('headerNotifBadge');
+        if (headerBadge) headerBadge.remove();
+      }
+    }
+
+    // Logout
+    function logoutUser() {
+      if (confirm('Apakah Anda yakin ingin keluar dari akun?')) {
+        const user = JSON.parse(localStorage.getItem('ngacirtix_user')) || {};
+        user.isLoggedIn = false;
+        localStorage.setItem('ngacirtix_user', JSON.stringify(user));
+        window.location.href = 'login.html';
+      }
+    }
+  </script>
+</body>
+</html>
